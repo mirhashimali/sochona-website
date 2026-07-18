@@ -1,4 +1,4 @@
-import { client } from "@/sanity/client";
+import { client, isSanityConfigured } from "@/sanity/client";
 import { PortableText } from "@portabletext/react";
 
 // This tells Next.js to treat params as a Promise, fixing the recent error
@@ -7,10 +7,17 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
 
   // Fetch the data from Sanity
-  const post = await client.fetch(
-    `*[_type == "post" && slug.current == $slug][0]`,
-    { slug }
-  );
+  let post = null;
+  if (isSanityConfigured) {
+    try {
+      post = await client.fetch(
+        `*[_type == "post" && slug.current == $slug][0]`,
+        { slug }
+      );
+    } catch {
+      post = null;
+    }
+  }
 
   // Safety check: if no post exists, show a simple "Not found" message
   if (!post) {

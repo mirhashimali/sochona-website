@@ -1,4 +1,4 @@
-import { client } from "@/sanity/client";
+import { client, isSanityConfigured } from "@/sanity/client";
 import Link from "next/link"; // 1. Import Link
 
 interface Post {
@@ -8,12 +8,24 @@ interface Post {
 }
 
 export default async function BlogPage() {
-  const posts: Post[] = await client.fetch(`*[_type == "post"]`);
+  let posts: Post[] = [];
+
+  if (isSanityConfigured) {
+    try {
+      posts = await client.fetch(`*[_type == "post"]`);
+    } catch {
+      posts = [];
+    }
+  }
 
   return (
     <main className="p-12 max-w-4xl mx-auto w-full">
       <h1 className="text-4xl font-bold mb-8">Agency Blog</h1>
-      
+
+      {!isSanityConfigured && (
+        <p className="text-white/50 mb-8">Blog content isn&apos;t configured yet.</p>
+      )}
+
       <div className="grid gap-6">
         {posts.map((post) => (
           // 2. Wrap the card in a Link tag
