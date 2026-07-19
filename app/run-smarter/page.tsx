@@ -19,7 +19,8 @@ export default function RunSmarterPage() {
       </section>
 
       <section className="max-w-6xl mx-auto px-6 mb-24 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-purple-500/50 transition-colors">
+        {/* Made this whole card a clickable link to Automation */}
+        <Link href="/services/automation" className="block bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-purple-500/50 transition-colors">
           <h2 className="text-2xl font-bold mb-4 text-purple-400">CRM & Internal Systems</h2>
           <p className="text-neutral-400 mb-6">Bespoke software solutions designed exactly for how your team operates.</p>
           <ul className="space-y-2 text-neutral-300 font-medium">
@@ -28,8 +29,10 @@ export default function RunSmarterPage() {
             <li>✓ Appointment & Proposal Systems</li>
             <li>✓ Invoice & Receipt Generation</li>
           </ul>
-        </div>
-        <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-pink-500/50 transition-colors">
+        </Link>
+        
+        {/* Made this whole card a clickable link to Automation / Analytics */}
+        <Link href="/services/automation" className="block bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-pink-500/50 transition-colors">
           <h2 className="text-2xl font-bold mb-4 text-pink-400">Analytics & Automation</h2>
           <p className="text-neutral-400 mb-6">Make decisions based on hard data. We connect your tools and automate the busywork.</p>
           <ul className="space-y-2 text-neutral-300 font-medium">
@@ -38,7 +41,7 @@ export default function RunSmarterPage() {
             <li>✓ KPI Reporting & Marketing Attribution</li>
             <li>✓ Call & Event Tracking (GTM)</li>
           </ul>
-        </div>
+        </Link>
       </section>
 
       <section className="max-w-3xl mx-auto px-6 text-center">

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PenTool, Palette, Eye, Fingerprint, LayoutTemplate, Sparkles } from "lucide-react";
+import { PenTool, Palette, Eye, Fingerprint, LayoutTemplate, Sparkles, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Brand Identity & Design | Sochona",
@@ -93,6 +93,47 @@ export default function BrandingPage() {
               <p className="text-neutral-400 leading-relaxed">{feature.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Deep Dives / SEO Hub & Spoke Links */}
+      <section className="max-w-5xl mx-auto px-6 mb-24">
+        <div className="flex items-center gap-4 mb-8 border-b border-neutral-800 pb-4">
+          <Eye className="w-6 h-6 text-cyan-500" />
+          <h2 className="text-2xl font-bold text-white">Market Analysis & Design Strategy</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link href="/services/branding/visual-psychology-roi" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-cyan-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">Visual Psychology & Pricing Power</h3>
+              <p className="text-sm text-neutral-400">Why premium design is the ultimate price justification.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-cyan-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+          
+          <Link href="/services/branding/the-cost-of-fragmentation" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-cyan-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">The Cost of Brand Fragmentation</h3>
+              <p className="text-sm text-neutral-400">How inconsistent visual systems actively bleed market trust.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-cyan-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/branding/ui-ux-conversion-friction" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-cyan-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">UI/UX: Engineering Frictionless Conversions</h3>
+              <p className="text-sm text-neutral-400">Stop treating websites like static digital brochures.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-cyan-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/branding/strategic-rebranding" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-cyan-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">The Architecture of a Rebrand</h3>
+              <p className="text-sm text-neutral-400">When to pivot, when to evolve, and how to scale.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-cyan-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
         </div>
       </section>
 

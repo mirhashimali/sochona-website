@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Cpu, Bot, Workflow, Users, Network, Gauge } from "lucide-react";
+import { Cpu, Bot, Workflow, Users, Network, Gauge, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Business Automation & Custom CRMs | Sochona",
@@ -91,6 +91,47 @@ export default function AutomationPage() {
               <p className="text-neutral-400 leading-relaxed">{feature.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Deep Dives / SEO Hub & Spoke Links */}
+      <section className="max-w-5xl mx-auto px-6 mb-24">
+        <div className="flex items-center gap-4 mb-8 border-b border-neutral-800 pb-4">
+          <Workflow className="w-6 h-6 text-purple-500" />
+          <h2 className="text-2xl font-bold text-white">Technical Insights & Deep Dives</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link href="/services/automation/custom-crm-vs-saas" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-purple-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">Custom CRM Architecture vs. SaaS Bloat</h3>
+              <p className="text-sm text-neutral-400">Why off-the-shelf software is destroying your margins.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-purple-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+          
+          <Link href="/services/automation/ai-chatbot-integration" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-purple-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">AI Lead Qualification Workflows</h3>
+              <p className="text-sm text-neutral-400">Deploying LLMs to capture and vet traffic 24/7.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-purple-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/automation/proposal-invoice-automation" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-purple-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">Automating Administrative Chokepoints</h3>
+              <p className="text-sm text-neutral-400">Zero-touch proposal, invoice, and receipt generation.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-purple-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/automation/unified-admin-dashboards" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-purple-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">Unified Admin Portals</h3>
+              <p className="text-sm text-neutral-400">Centralizing disparate data into a single source of truth.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-purple-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
         </div>
       </section>
 

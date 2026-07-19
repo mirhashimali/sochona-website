@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Server, Activity, Lock, CloudRain, Wrench } from "lucide-react";
+import { ShieldCheck, Server, Activity, Lock, CloudRain, Wrench, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Web Hosting, Security & Maintenance | Sochona",
@@ -93,6 +93,47 @@ export default function MaintenancePage() {
               <p className="text-neutral-400 leading-relaxed">{feature.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Deep Dives / SEO Hub & Spoke Links */}
+      <section className="max-w-5xl mx-auto px-6 mb-24">
+        <div className="flex items-center gap-4 mb-8 border-b border-neutral-800 pb-4">
+          <ShieldCheck className="w-6 h-6 text-slate-400" />
+          <h2 className="text-2xl font-bold text-white">Technical Insights & Market Realities</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link href="/services/maintenance/edge-architecture-latency" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">Edge Architecture & The Latency Tax</h3>
+              <p className="text-sm text-neutral-400">Why centralized legacy servers are bleeding your conversions.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+          
+          <Link href="/services/maintenance/zero-trust-security" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">Zero-Trust Security & Breach Economics</h3>
+              <p className="text-sm text-neutral-400">A data breach is a board-level crisis, not an IT problem.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/maintenance/core-web-vitals-penalty" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">Core Web Vitals & Algorithmic Penalties</h3>
+              <p className="text-sm text-neutral-400">How Google silently demotes unmaintained digital properties.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/maintenance/proactive-code-maintenance" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">The Liability of Unmaintained Code</h3>
+              <p className="text-sm text-neutral-400">Why software is a depreciating asset without proactive patching.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
         </div>
       </section>
 

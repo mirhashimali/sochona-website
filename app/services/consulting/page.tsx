@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Lightbulb, Compass, BrainCircuit, Presentation, Briefcase, ShieldCheck } from "lucide-react";
+import { Lightbulb, Compass, BrainCircuit, Presentation, Briefcase, ShieldCheck, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Digital Transformation & AI Strategy Consulting | Sochona",
@@ -93,6 +93,47 @@ export default function ConsultingPage() {
               <p className="text-neutral-400 leading-relaxed">{feature.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Deep Dives / SEO Hub & Spoke Links */}
+      <section className="max-w-5xl mx-auto px-6 mb-24">
+        <div className="flex items-center gap-4 mb-8 border-b border-neutral-800 pb-4">
+          <Briefcase className="w-6 h-6 text-amber-500" />
+          <h2 className="text-2xl font-bold text-white">Executive Insights & Market Strategy</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link href="/services/consulting/digital-transformation-blueprint" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-amber-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">The Anatomy of Digital Transformation</h3>
+              <p className="text-sm text-neutral-400">Overcoming legacy tech debt and operational drag.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-amber-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+          
+          <Link href="/services/consulting/ai-competitive-moat" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-amber-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">AI as a Competitive Moat</h3>
+              <p className="text-sm text-neutral-400">Deploying machine learning for actual operational leverage.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-amber-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/consulting/fractional-executive-advantage" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-amber-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">The Fractional C-Suite Advantage</h3>
+              <p className="text-sm text-neutral-400">Why mid-market companies are abandoning full-time executives.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-amber-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/consulting/diagnosing-revenue-leakage" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-amber-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">Diagnosing Revenue Leakage</h3>
+              <p className="text-sm text-neutral-400">Ruthless audits for ad spend, funnels, and infrastructure.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-amber-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
         </div>
       </section>
 

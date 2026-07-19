@@ -83,7 +83,7 @@ export default function ServicesPage() {
       <section className="max-w-7xl mx-auto px-6 mb-24 pointer-events-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, idx) => (
-            <Link href={service.href} key={idx} className={`group block cursor-none`}>
+            <Link href={service.href} key={idx} className={`group block`}>
               <div className={`bg-neutral-900 border border-neutral-800 rounded-2xl p-8 h-full transition-all duration-300 hover:-translate-y-2 shadow-lg ${service.color}`}>
                 <service.icon className={`w-10 h-10 mb-6 transition-transform group-hover:scale-110 ${service.iconColor}`} />
                 <h2 className="text-2xl font-bold mb-4 text-white group-hover:text-gray-200 transition-colors">
@@ -109,7 +109,7 @@ export default function ServicesPage() {
         <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-12">
           <h2 className="text-3xl font-bold mb-4">Ready to scale?</h2>
           <p className="text-neutral-400 mb-8">Let's audit your current digital infrastructure and build a system that drives revenue.</p>
-          <Link href="/contact" className="inline-block px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-neutral-200 transition-colors cursor-none">
+          <Link href="/contact" className="inline-block px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-neutral-200 transition-colors">
             Start the Conversation
           </Link>
         </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Code2, Zap, Smartphone, Server } from "lucide-react";
+import { Code2, Zap, Smartphone, Server, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Custom Web Development & PWAs | Sochona",
@@ -64,36 +64,12 @@ export default function WebDevelopmentPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            {
-              title: "Custom Web Applications",
-              desc: "Bespoke web apps built from the ground up to solve complex business problems, featuring secure authentication and custom database integration.",
-              icon: Code2
-            },
-            {
-              title: "Progressive Web Apps (PWA)",
-              desc: "Deliver an app-like experience directly in the browser. PWAs offer offline capabilities, push notifications, and lightning-fast speeds.",
-              icon: Smartphone
-            },
-            {
-              title: "High-Performance Corporate Sites",
-              desc: "Establish total industry authority with a corporate web presence that perfectly balances cutting-edge design with semantic SEO architecture.",
-              icon: Server
-            },
-            {
-              title: "Landing Page Development",
-              desc: "Hyper-focused, A/B tested landing pages engineered with one singular goal: converting your paid ad traffic into qualified leads.",
-              icon: Zap
-            },
-            {
-              title: "Website Redesign & Migration",
-              desc: "Moving away from a slow, outdated platform? We handle seamless migrations ensuring zero data loss and an immediate boost in organic rankings.",
-              icon: Code2
-            },
-            {
-              title: "Ongoing Infrastructure Maintenance",
-              desc: "Security monitoring, backup management, and uptime tracking to ensure your digital engine never misfires.",
-              icon: Server
-            }
+            { title: "Custom Web Applications", desc: "Bespoke web apps built from the ground up to solve complex business problems, featuring secure authentication.", icon: Code2 },
+            { title: "Progressive Web Apps (PWA)", desc: "Deliver an app-like experience directly in the browser with offline capabilities and push notifications.", icon: Smartphone },
+            { title: "High-Performance Corporate Sites", desc: "Establish total authority with a corporate presence that balances design with semantic SEO architecture.", icon: Server },
+            { title: "Landing Page Development", desc: "Hyper-focused, A/B tested landing pages engineered with one goal: converting ad traffic into qualified leads.", icon: Zap },
+            { title: "Website Redesign & Migration", desc: "Moving away from slow platforms? We handle seamless migrations ensuring zero data loss and boosted rankings.", icon: Code2 },
+            { title: "Ongoing Maintenance", desc: "Security monitoring, backup management, and uptime tracking to ensure your digital engine never misfires.", icon: Server }
           ].map((feature, idx) => (
             <div key={idx} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1">
               <feature.icon className="w-10 h-10 text-blue-400 mb-6" />
@@ -101,6 +77,44 @@ export default function WebDevelopmentPage() {
               <p className="text-neutral-400 leading-relaxed">{feature.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Deep Dives / SEO Hub & Spoke Links */}
+      <section className="max-w-5xl mx-auto px-6 mb-24">
+        <div className="flex items-center gap-4 mb-8 border-b border-neutral-800 pb-4">
+          <Code2 className="w-6 h-6 text-blue-500" />
+          <h2 className="text-2xl font-bold text-white">Engineering Insights & Architecture</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link href="/services/web-development/modern-stack-vs-cms" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">Modern Stack vs. CMS Bloat</h3>
+              <p className="text-sm text-neutral-400">Why Next.js is destroying legacy WordPress.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+          <Link href="/services/web-development/edge-delivery-performance" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">Edge Delivery Architecture</h3>
+              <p className="text-sm text-neutral-400">The physics of sub-second global load times.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+          <Link href="/services/web-development/pwa-vs-native" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">PWA vs. Native Apps</h3>
+              <p className="text-sm text-neutral-400">Capturing app-like performance without the store friction.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+          <Link href="/services/web-development/conversion-first-ux" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">Conversion-First UX</h3>
+              <p className="text-sm text-neutral-400">Engineering interfaces that guide, not just display.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
         </div>
       </section>
 

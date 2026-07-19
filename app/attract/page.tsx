@@ -19,7 +19,8 @@ export default function AttractPage() {
       </section>
 
       <section className="max-w-6xl mx-auto px-6 mb-24 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-blue-500/50 transition-colors">
+        {/* Made this whole card a clickable link to Performance Marketing */}
+        <Link href="/services/performance-marketing" className="block bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-blue-500/50 transition-colors">
           <h2 className="text-2xl font-bold mb-4 text-blue-400">Performance Marketing</h2>
           <p className="text-neutral-400 mb-6">We deploy scalable capital across the Google ecosystem to capture high-intent demand.</p>
           <ul className="space-y-2 text-neutral-300 font-medium">
@@ -28,8 +29,10 @@ export default function AttractPage() {
             <li>✓ YouTube Ad Placements</li>
             <li>✓ Remarketing & Lead Funnels</li>
           </ul>
-        </div>
-        <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-cyan-500/50 transition-colors">
+        </Link>
+        
+        {/* Made this whole card a clickable link to SEO */}
+        <Link href="/services/seo" className="block bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-cyan-500/50 transition-colors">
           <h2 className="text-2xl font-bold mb-4 text-cyan-400">Search Engine Optimisation</h2>
           <p className="text-neutral-400 mb-6">Own your organic real estate. We engineer your web presence to rank for the keywords that drive revenue.</p>
           <ul className="space-y-2 text-neutral-300 font-medium">
@@ -38,7 +41,7 @@ export default function AttractPage() {
             <li>✓ Keyword Research & Competitor Analysis</li>
             <li>✓ Structured Data & Sitemap Setup</li>
           </ul>
-        </div>
+        </Link>
       </section>
 
       {/* CTA Section */}

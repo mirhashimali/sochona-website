@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Search, MapPin, Database, LineChart, Globe, Binary } from "lucide-react";
+import { Search, MapPin, Database, LineChart, Globe, Binary, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Technical SEO & Organic Search | Sochona",
@@ -91,6 +91,47 @@ export default function SEOPage() {
               <p className="text-neutral-400 leading-relaxed">{feature.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Advanced Search Engineering (New Hub & Spoke Links) */}
+      <section className="max-w-5xl mx-auto px-6 mb-24">
+        <div className="flex items-center gap-4 mb-8 border-b border-neutral-800 pb-4">
+          <Search className="w-6 h-6 text-emerald-500" />
+          <h2 className="text-2xl font-bold text-white">Advanced Search Engineering</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link href="/services/seo/technical-infrastructure" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-emerald-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">Technical Infrastructure</h3>
+              <p className="text-sm text-neutral-400">Core Web Vitals as a competitive advantage.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-emerald-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+          
+          <Link href="/services/seo/local-monopoly" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-emerald-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">The Local Monopoly</h3>
+              <p className="text-sm text-neutral-400">Engineering GBP authority and geographic dominance.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-emerald-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/seo/ai-overviews" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-emerald-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">The SGE & AI Future</h3>
+              <p className="text-sm text-neutral-400">Adapting to the zero-click, answer-engine era.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-emerald-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link href="/services/seo/entity-authority" className="group p-6 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-emerald-500/50 transition-colors flex justify-between items-center">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">Entity Authority</h3>
+              <p className="text-sm text-neutral-400">Using structured data to become a recognized entity.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-emerald-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </Link>
         </div>
       </section>
 

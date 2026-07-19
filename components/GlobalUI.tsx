@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
   ssr: false,
@@ -12,7 +13,9 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
 
 export default function GlobalUI() {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
+  // Desktop custom cursor logic
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -22,18 +25,30 @@ export default function GlobalUI() {
     return () => window.removeEventListener("mousemove", updateMousePosition, { capture: true });
   }, []);
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isMobileOpen]);
+
   return (
     <>
       {/* Global Navigation Bar */}
       <header className="fixed top-0 left-0 w-full z-[100] px-6 md:px-12 py-6 flex justify-between items-center pointer-events-none">
         {/* Logo */}
-        <div className="pointer-events-auto">
-          <Link href="/" className="text-2xl font-bold text-white tracking-tighter hover:opacity-80 transition-opacity">
+        <div className="pointer-events-auto relative z-[110]">
+          <Link href="/" onClick={() => setIsMobileOpen(false)} className="text-2xl font-bold text-white tracking-tighter hover:opacity-80 transition-opacity">
             sochona.
           </Link>
         </div>
 
-        {/* Links */}
+        {/* Desktop Links (Hidden on Mobile) */}
         <nav className="hidden md:flex items-center gap-8 pointer-events-auto bg-black/20 backdrop-blur-md border border-white/10 px-8 py-3 rounded-full shadow-lg">
           
           {/* Services Dropdown Parent */}
@@ -79,16 +94,45 @@ export default function GlobalUI() {
             Contact Us
           </Link>
         </nav>
+
+        {/* Mobile Hamburger Button (Hidden on Desktop) */}
+        <button 
+          className="md:hidden pointer-events-auto relative z-[110] text-white p-2"
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          aria-label="Toggle Menu"
+        >
+          {isMobileOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+        </button>
+
+        {/* Mobile Fullscreen Menu */}
+        {isMobileOpen && (
+          <div className="fixed inset-0 bg-black/95 backdrop-blur-2xl z-[105] flex flex-col items-center justify-center pointer-events-auto md:hidden gap-10">
+            <Link href="/services" onClick={() => setIsMobileOpen(false)} className="text-3xl font-semibold text-white hover:text-white/70 transition-colors">
+              Services
+            </Link>
+            <Link href="/about" onClick={() => setIsMobileOpen(false)} className="text-3xl font-semibold text-white hover:text-white/70 transition-colors">
+              About
+            </Link>
+            <Link href="/blog" onClick={() => setIsMobileOpen(false)} className="text-3xl font-semibold text-white hover:text-white/70 transition-colors">
+              Blog
+            </Link>
+            <Link href="/contact" onClick={() => setIsMobileOpen(false)} className="text-xl font-bold text-black bg-white px-10 py-4 rounded-full mt-4 active:scale-95 transition-transform">
+              Contact Us
+            </Link>
+          </div>
+        )}
       </header>
 
-      {/* Custom Trailing Cursor (Hidden on Mobile) */}
+      {/* The X-Ray Aura (Outer Glow) */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border border-[#007AFF] rounded-full pointer-events-none z-[9999] mix-blend-screen hidden md:block"
-        animate={{ x: mousePosition.x - 16, y: mousePosition.y - 16 }}
-        transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.5 }}
+        className="fixed top-0 left-0 w-16 h-16 bg-white rounded-full blur-[12px] pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        animate={{ x: mousePosition.x - 32, y: mousePosition.y - 32 }}
+        transition={{ type: "tween", ease: "linear", duration: 0.1 }}
       />
+      
+      {/* The Custom Center Dot (Acts as the actual pointer) */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-[#007AFF] rounded-full pointer-events-none z-[9999] hidden md:block"
+        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block"
         animate={{ x: mousePosition.x - 4, y: mousePosition.y - 4 }}
         transition={{ type: "tween", ease: "linear", duration: 0 }}
       />

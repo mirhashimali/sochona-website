@@ -19,7 +19,8 @@ export default function ConvertPage() {
       </section>
 
       <section className="max-w-6xl mx-auto px-6 mb-24 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-emerald-500/50 transition-colors">
+        {/* Made this whole card a clickable link to Web Development */}
+        <Link href="/services/web-development" className="block bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-emerald-500/50 transition-colors">
           <h2 className="text-2xl font-bold mb-4 text-emerald-400">Web Development</h2>
           <p className="text-neutral-400 mb-6">Enterprise-grade digital experiences built for speed, security, and scalability.</p>
           <ul className="space-y-2 text-neutral-300 font-medium">
@@ -28,8 +29,10 @@ export default function ConvertPage() {
             <li>✓ Vercel & Netlify Deployment</li>
             <li>✓ Website Migration & Redesign</li>
           </ul>
-        </div>
-        <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-green-500/50 transition-colors">
+        </Link>
+        
+        {/* Made this whole card a clickable link to Performance Marketing (CRO) */}
+        <Link href="/services/performance-marketing" className="block bg-neutral-900 border border-neutral-800 rounded-2xl p-8 hover:border-green-500/50 transition-colors">
           <h2 className="text-2xl font-bold mb-4 text-green-400">Conversion Rate Optimisation</h2>
           <p className="text-neutral-400 mb-6">We eliminate friction from the buying process, ensuring every visitor has a clear path to purchase.</p>
           <ul className="space-y-2 text-neutral-300 font-medium">
@@ -38,7 +41,7 @@ export default function ConvertPage() {
             <li>✓ Heatmaps & Microsoft Clarity</li>
             <li>✓ GA4 Enhanced Conversions</li>
           </ul>
-        </div>
+        </Link>
       </section>
 
       <section className="max-w-3xl mx-auto px-6 text-center">
