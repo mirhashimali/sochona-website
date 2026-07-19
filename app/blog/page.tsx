@@ -1,6 +1,10 @@
 import { client } from "@/sanity/client";
 import Link from "next/link";
 
+// Instructs Next.js to revalidate the cache every 30 seconds if a new request comes in.
+// You get the speed of a static site with the freshness of a dynamic database.
+export const revalidate = 30;
+
 interface Post {
   _id: string;
   title: string;

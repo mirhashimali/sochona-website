@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -12,18 +11,7 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
 });
 
 export default function GlobalUI() {
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-
-  // Desktop custom cursor logic
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    
-    window.addEventListener("mousemove", updateMousePosition, { capture: true });
-    return () => window.removeEventListener("mousemove", updateMousePosition, { capture: true });
-  }, []);
 
   // Prevent background scrolling when mobile menu is open
   useEffect(() => {
@@ -122,20 +110,6 @@ export default function GlobalUI() {
           </div>
         )}
       </header>
-
-      {/* The X-Ray Aura (Outer Glow) */}
-      <motion.div
-        className="fixed top-0 left-0 w-16 h-16 bg-white rounded-full blur-[12px] pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-        animate={{ x: mousePosition.x - 32, y: mousePosition.y - 32 }}
-        transition={{ type: "tween", ease: "linear", duration: 0.1 }}
-      />
-      
-      {/* The Custom Center Dot (Acts as the actual pointer) */}
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-        animate={{ x: mousePosition.x - 4, y: mousePosition.y - 4 }}
-        transition={{ type: "tween", ease: "linear", duration: 0 }}
-      />
 
       {/* 3D Spline Interactive Background - GEOMETRIC OVERSCAN FIX */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-auto">
