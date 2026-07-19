@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import { Megaphone, Repeat, Cpu } from "lucide-react";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+
+// This injects critical SEO data into the <head> for Google
+export const metadata: Metadata = {
+  title: "Sochona | The AI & Digital Growth Agency",
+  description: "Stop buying websites. Build systems. We create hyper-profitable digital infrastructure that attracts traffic, converts clicks, and automates operations.",
+  keywords: "Digital marketing agency, AI automation, custom CRM, performance marketing, SEO, web development",
+};
 
 export default function Home() {
   return (
@@ -22,12 +30,12 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Audit Form Section (Using your new reusable component!) */}
+      {/* Audit Form Section */}
       <section className="max-w-3xl mx-auto px-6 pb-24 w-full">
         <LeadForm />
       </section>
 
-      {/* Framework Section (Now with premium hover animations) */}
+      {/* Framework Section */}
       <section className="max-w-6xl mx-auto px-6 py-24 border-t border-white/10 bg-black/40 backdrop-blur-sm rounded-t-[3rem] pointer-events-auto w-full">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-semibold text-white mb-4 tracking-tight drop-shadow-md">Our Growth Framework</h2>
@@ -40,7 +48,6 @@ export default function Home() {
             { icon: Cpu, title: "3. Run Smarter", desc: "Custom Mini-CRMs and automated workflows that let you scale without breaking.", slug: "run-smarter" }
           ].map((pillar, idx) => (
             <Link href={`/${pillar.slug}`} key={idx} className="block cursor-none group">
-              {/* Group hover state makes the whole card reactive */}
               <div className="bg-black/60 border border-white/10 p-8 rounded-3xl group-hover:bg-black/80 transition-all duration-300 group-hover:-translate-y-2 h-full backdrop-blur-md shadow-xl">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#007AFF] to-[#5E5CE6] flex items-center justify-center mb-6 text-white shadow-lg group-hover:scale-110 transition-transform">
                   <pillar.icon className="w-6 h-6" />
