@@ -37,6 +37,30 @@ export default function GlobalUI() {
     return () => { document.body.style.overflow = 'unset'; };
   }, [isMobileOpen]);
 
+  // Aggressive Spline Watermark Removal
+  useEffect(() => {
+    const removeSplineLogo = () => {
+      // 1. Target the standard React wrapper watermark
+      const reactLogo = document.querySelector('a[href*="spline.design"]');
+      if (reactLogo) {
+        reactLogo.remove();
+      }
+      
+      // 2. Target the Shadow DOM as a failsafe
+      const spline = document.querySelector("spline-viewer");
+      if (spline && spline.shadowRoot) {
+        const logo = spline.shadowRoot.querySelector("#logo");
+        if (logo) logo.remove();
+      }
+    };
+
+    // The 3D canvas takes a moment to compile, so we poll the DOM briefly
+    const timer = setInterval(removeSplineLogo, 500);
+    setTimeout(() => clearInterval(timer), 5000); // Stops polling after 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
       {/* Global Navigation Bar */}

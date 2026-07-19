@@ -13,6 +13,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -26,10 +27,18 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555555;
 }
-/* --- SPLINE WATERMARK OVERRIDE --- */
-div > a[href*="spline.design"] {
+
+/* --- SPLINE WATERMARK OVERRIDE V2 --- */
+/* 1. Targets the React Package Logo */
+a[href*="spline.design"] {
   display: none !important;
   opacity: 0 !important;
-  pointer-events: none !important;
   visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* 2. Targets the Web Component Shadow DOM */
+spline-viewer::part(logo) {
+  display: none !important;
+  opacity: 0 !important;
 }
