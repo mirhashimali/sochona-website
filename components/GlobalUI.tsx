@@ -37,30 +37,6 @@ export default function GlobalUI() {
     return () => { document.body.style.overflow = 'unset'; };
   }, [isMobileOpen]);
 
-  // Aggressive Spline Watermark Removal
-  useEffect(() => {
-    const removeSplineLogo = () => {
-      // 1. Target the standard React wrapper watermark
-      const reactLogo = document.querySelector('a[href*="spline.design"]');
-      if (reactLogo) {
-        reactLogo.remove();
-      }
-      
-      // 2. Target the Shadow DOM as a failsafe
-      const spline = document.querySelector("spline-viewer");
-      if (spline && spline.shadowRoot) {
-        const logo = spline.shadowRoot.querySelector("#logo");
-        if (logo) logo.remove();
-      }
-    };
-
-    // The 3D canvas takes a moment to compile, so we poll the DOM briefly
-    const timer = setInterval(removeSplineLogo, 500);
-    setTimeout(() => clearInterval(timer), 5000); // Stops polling after 5 seconds
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <>
       {/* Global Navigation Bar */}
@@ -161,9 +137,14 @@ export default function GlobalUI() {
         transition={{ type: "tween", ease: "linear", duration: 0 }}
       />
 
-      {/* 3D Spline Interactive Background */}
-      <div className="fixed top-0 left-0 w-full h-screen z-0 pointer-events-auto">
-        <Spline scene="https://prod.spline.design/19UJG8bsVhWJAmeG/scene.splinecode" />
+      {/* 3D Spline Interactive Background - GEOMETRIC OVERSCAN FIX */}
+      <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-auto">
+        <div 
+          className="absolute top-0 left-0"
+          style={{ width: 'calc(100vw + 200px)', height: 'calc(100vh + 100px)' }}
+        >
+          <Spline scene="https://prod.spline.design/19UJG8bsVhWJAmeG/scene.splinecode" />
+        </div>
       </div>
     </>
   );

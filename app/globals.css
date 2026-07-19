@@ -42,3 +42,16 @@ spline-viewer::part(logo) {
   display: none !important;
   opacity: 0 !important;
 }
+/* --- SANITY ADMIN BRANDING OVERRIDE (FIXED) --- */
+
+/* 1. Hides the main "Sanity" SVG Logo safely */
+svg[data-sanity-icon="sanity-logo"],
+svg[aria-label="Sanity logo"] {
+  display: none !important;
+}
+
+/* 2. Hides the footer links directly. 
+   The ">" ensures we ONLY target the immediate parent row, not the whole page! */
+*:has(> a[href*="sanity.io/docs"]) {
+  display: none !important;
+}
