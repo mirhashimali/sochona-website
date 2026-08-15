@@ -1,5 +1,11 @@
 import { client } from "@/sanity/client";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Insights on Google Ads, SEO, and digital growth from the Sochona team.",
+};
 
 // Instructs Next.js to revalidate the cache every 30 seconds if a new request comes in.
 // You get the speed of a static site with the freshness of a dynamic database.

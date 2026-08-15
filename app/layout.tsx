@@ -8,8 +8,14 @@ import LayoutWrapper from "@/components/LayoutWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "sochona. | The AI Agency",
+  title: {
+    default: "sochona. | The AI Agency",
+    template: "%s | sochona.",
+  },
   description: "Stop buying websites. Build systems.",
+  verification: {
+    google: "_SoAwQZ6Dueex24M3RgrNsX-7SuPR-MC3YCZBfqcwyE",
+  },
 };
 
 export default function RootLayout({
