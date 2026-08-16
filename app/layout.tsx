@@ -37,11 +37,16 @@ export default function RootLayout({
 
           {/* Global Footer */}
           <div className="relative z-20 pointer-events-none w-full mt-auto">
-            <footer className="max-w-6xl mx-auto px-6 py-12 border-t border-white/10 flex justify-between items-center bg-black/40 backdrop-blur-sm pointer-events-auto w-full">
+            <footer className="max-w-6xl mx-auto px-6 py-12 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 bg-black/40 backdrop-blur-sm pointer-events-auto w-full">
               <div className="text-xl font-bold tracking-tight text-white drop-shadow-md">sochona.</div>
-              <Link href="/admin" className="flex items-center gap-2 text-xs text-white/50 hover:text-white transition-colors">
-                <Lock className="w-3 h-3" /> Admin Portal
-              </Link>
+              <div className="flex items-center gap-6">
+                <Link href="/privacy-policy" className="text-xs text-white/50 hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+                <Link href="/admin" className="flex items-center gap-2 text-xs text-white/50 hover:text-white transition-colors">
+                  <Lock className="w-3 h-3" /> Admin Portal
+                </Link>
+              </div>
             </footer>
           </div>
         </LayoutWrapper>
