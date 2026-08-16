@@ -39,12 +39,16 @@ export default function RootLayout({
           <div className="relative z-20 pointer-events-none w-full mt-auto">
             <footer className="max-w-6xl mx-auto px-6 py-12 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 bg-black/40 backdrop-blur-sm pointer-events-auto w-full">
               <div className="text-xl font-bold tracking-tight text-white drop-shadow-md">sochona.</div>
-              <div className="flex items-center gap-6">
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
                 <Link href="/privacy-policy" className="text-xs text-white/50 hover:text-white transition-colors">
                   Privacy Policy
                 </Link>
-                <Link href="/admin" className="flex items-center gap-2 text-xs text-white/50 hover:text-white transition-colors">
-                  <Lock className="w-3 h-3" /> Admin Portal
+                <div className="w-px h-3 bg-white/10 hidden sm:block"></div>
+                <Link href="/admin/studio" className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white transition-colors">
+                  <Lock className="w-3 h-3" /> Studio
+                </Link>
+                <Link href="/admin/leads" className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white transition-colors">
+                  <Lock className="w-3 h-3" /> Admin
                 </Link>
               </div>
             </footer>

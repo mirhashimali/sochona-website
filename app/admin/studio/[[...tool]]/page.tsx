@@ -8,7 +8,7 @@
  */
 
 import { NextStudio } from 'next-sanity/studio'
-import config from '../../../sanity.config'
+import config from '../../../../sanity.config'
 import { metadata as studioMetadata, viewport } from 'next-sanity/studio'
 import type { Metadata } from 'next'
 

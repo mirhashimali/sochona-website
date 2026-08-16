@@ -16,7 +16,6 @@ export default function GlobalUI() {
   const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Prevent background scrolling when mobile menu is open
   useEffect(() => {
     if (isMobileOpen) {
       document.body.style.overflow = 'hidden';
@@ -26,7 +25,6 @@ export default function GlobalUI() {
     return () => { document.body.style.overflow = 'unset'; };
   }, [isMobileOpen]);
 
-  // Close desktop dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -49,19 +47,14 @@ export default function GlobalUI() {
 
   return (
     <>
-      {/* Global Navigation Bar */}
       <header className="fixed top-0 left-0 w-full z-[100] px-6 md:px-12 py-6 flex justify-between items-center pointer-events-none">
-        {/* Logo */}
         <div className="pointer-events-auto relative z-[110]">
           <Link href="/" onClick={() => { setIsMobileOpen(false); setIsMobileServicesOpen(false); }} className="text-2xl font-bold text-white tracking-tighter hover:opacity-80 transition-opacity flex items-center gap-1.5">
             sochona<span className="text-[#007AFF]">.</span>
           </Link>
         </div>
 
-        {/* Desktop Links (Hidden on Mobile) */}
         <nav className="hidden md:flex items-center gap-8 pointer-events-auto bg-black/20 backdrop-blur-md border border-white/10 px-8 py-3 rounded-full shadow-lg">
-          
-          {/* Services Dropdown Parent */}
           <div 
             className="relative py-2" 
             ref={dropdownRef}
@@ -84,7 +77,6 @@ export default function GlobalUI() {
               </button>
             </div>
             
-            {/* The Dropdown Menu */}
             {isDesktopServicesOpen && (
               <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-64 bg-[#1C1C1E]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                 {serviceLinks.map((service, idx) => (
@@ -112,7 +104,6 @@ export default function GlobalUI() {
           </Link>
         </nav>
 
-        {/* Mobile Hamburger Button (Hidden on Desktop) */}
         <button 
           className="md:hidden pointer-events-auto relative z-[110] text-white p-2 bg-black/40 backdrop-blur-md rounded-full border border-white/10"
           onClick={() => {
@@ -124,11 +115,8 @@ export default function GlobalUI() {
           {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
-        {/* Mobile Fullscreen Menu with Sub-Services Accordion */}
         {isMobileOpen && (
           <div className="fixed inset-0 bg-black/95 backdrop-blur-2xl z-[105] flex flex-col items-center justify-start pt-28 pb-12 px-6 pointer-events-auto md:hidden overflow-y-auto space-y-6">
-            
-            {/* Services Section with Accordion */}
             <div className="w-full max-w-xs flex flex-col items-center">
               <div className="flex items-center justify-center w-full gap-2">
                 <Link 
@@ -176,7 +164,6 @@ export default function GlobalUI() {
         )}
       </header>
 
-      {/* 3D Spline Interactive Background - GEOMETRIC OVERSCAN FIX */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-auto">
         <div 
           className="absolute top-0 left-0"

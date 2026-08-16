@@ -5,7 +5,13 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin", "/api/", "/thank-you"],
+      disallow: [
+        "/admin",
+        "/admin/leads",
+        "/studio",
+        "/api/",
+        "/thank-you"
+      ],
     },
     sitemap: "https://sochona.net/sitemap.xml",
   };

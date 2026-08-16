@@ -9,7 +9,7 @@ export default function ScrollReveal({ children }: { children: ReactNode }) {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ 
-        once: false, // This makes it animate in and out repeatedly as you scroll
+        once: true, // Animates in once, then stays visible — no more repeat triggering
         margin: "-50px" // Triggers slightly after it enters the screen
       }}
       transition={{ 
