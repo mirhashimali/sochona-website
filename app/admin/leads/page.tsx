@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LogOut } from "lucide-react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { LogOut, Search, Play, Database, RefreshCw } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const MapComponent = dynamic(() => import("@/components/RadiusMap"), { ssr: false });
 
 interface Lead {
-  row: number;
+  row?: number;
   name: string;
   email: string;
   phone: string;
@@ -16,24 +17,22 @@ interface Lead {
   assignedTo: string;
 }
 
-const STATUS_OPTIONS = [
-  { label: "No Answer", color: "bg-neutral-500/20 text-neutral-300 border-neutral-500/40" },
-  { label: "Pitched", color: "bg-blue-500/20 text-blue-300 border-blue-500/40" },
-  { label: "Adopted Partial", color: "bg-amber-500/20 text-amber-300 border-amber-500/40" },
-  { label: "Adopted", color: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40" },
-  { label: "Won", color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" },
-  { label: "Follow up Scheduled", color: "bg-purple-500/20 text-purple-300 border-purple-500/40" },
-];
-
-function getStatusStyle(status: string) {
-  return STATUS_OPTIONS.find((s) => s.label === status)?.color || STATUS_OPTIONS[0].color;
-}
-
 export default function LeadsDashboard() {
+  const [activeTab, setActiveTab] = useState<"directory" | "scraper">("directory");
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
-  const [savingRow, setSavingRow] = useState<number | null>(null);
-  const router = useRouter();
+
+  // Scraper Controls
+  const [keyword, setKeyword] = useState("Plumbers");
+  const [targetType, setTargetType] = useState<"city" | "radius">("radius");
+  const [cityName, setCityName] = useState("Gurugram Sector 29");
+  const [lat, setLat] = useState(28.4595);
+  const [lng, setLng] = useState(77.0266);
+  const [radius, setRadius] = useState(5);
+  const [unit, setUnit] = useState<"km" | "miles">("km");
+
+  const [isScraping, setIsScraping] = useState(false);
+  const [scrapeStatus, setScrapeStatus] = useState("");
 
   useEffect(() => {
     fetchLeads();
@@ -41,108 +40,264 @@ export default function LeadsDashboard() {
 
   async function fetchLeads() {
     setLoading(true);
-    const res = await fetch("/api/admin/leads");
-    const data = await res.json();
-    setLeads(data.leads || []);
-    setLoading(false);
+    try {
+      const res = await fetch("/api/admin/leads");
+      const data = await res.json();
+      setLeads(data.leads || []);
+    } catch (err) {
+      console.error("Failed to load leads", err);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  async function updateLead(row: number, field: "status" | "assignedTo", value: string) {
-    setSavingRow(row);
-    setLeads((prev) =>
-      prev.map((lead) => (lead.row === row ? { ...lead, [field]: value } : lead))
-    );
+  async function triggerScraper(e: React.FormEvent) {
+    e.preventDefault();
+    setIsScraping(true);
+    setScrapeStatus("Launching Google Maps Scraper Bot...");
 
-    await fetch("/api/admin/leads", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ row, [field]: value }),
-    });
-    setSavingRow(null);
-  }
+    try {
+      const res = await fetch("/api/admin/scrape", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          keyword,
+          targetType,
+          location: targetType === "city" ? cityName : `${lat},${lng}`,
+          radius: targetType === "radius" ? radius : null,
+          unit,
+        }),
+      });
 
-  async function handleLogout() {
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/leads/login");
+      if (res.ok) {
+        setScrapeStatus("Scraper Agent Dispatched! Leads will auto-populate in your Google Sheet in 3-5 minutes.");
+      } else {
+        const errData = await res.json();
+        setScrapeStatus(`Error starting task: ${errData.error || "Check GitHub tokens"}`);
+      }
+    } catch (err) {
+      setScrapeStatus("Network error launching scraper task.");
+    } finally {
+      setIsScraping(false);
+    }
   }
 
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-12">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-semibold">Leads Dashboard</h1>
-          <div className="flex items-center gap-6">
-  <Link
-    href="/admin/leads/receipt"
-    className="text-sm text-white/60 hover:text-white transition-colors"
-  >
-    Receipt Generator
-  </Link>
-  <button
-    onClick={handleLogout}
-    className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
-  >
-    <LogOut className="w-4 h-4" /> Log Out
-  </button>
-</div>
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 p-6">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-6 border-b border-neutral-800 pb-4">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-white">Sochona Admin Console</h1>
+          <p className="text-sm text-neutral-400">Lead Intelligence & Automation Hub</p>
         </div>
-
-        {loading ? (
-          <p className="text-white/50">Loading leads...</p>
-        ) : leads.length === 0 ? (
-          <p className="text-white/50">No leads yet.</p>
-        ) : (
-          <div className="overflow-x-auto rounded-2xl border border-white/10">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-neutral-950 text-white/60 text-left">
-                  <th className="px-4 py-3 font-medium">Name</th>
-                  <th className="px-4 py-3 font-medium">Email</th>
-                  <th className="px-4 py-3 font-medium">Phone</th>
-                  <th className="px-4 py-3 font-medium">Service</th>
-                  <th className="px-4 py-3 font-medium">Date</th>
-                  <th className="px-4 py-3 font-medium">Status</th>
-                  <th className="px-4 py-3 font-medium">Assigned To</th>
-                </tr>
-              </thead>
-              <tbody>
-                {leads.map((lead) => (
-                  <tr key={lead.row} className="border-t border-white/10 hover:bg-white/[0.02]">
-                    <td className="px-4 py-3 font-medium">{lead.name}</td>
-                    <td className="px-4 py-3 text-white/70">{lead.email}</td>
-                    <td className="px-4 py-3 text-white/70">{lead.phone}</td>
-                    <td className="px-4 py-3 text-white/70">{lead.service}</td>
-                    <td className="px-4 py-3 text-white/50 text-xs">{lead.timestamp}</td>
-                    <td className="px-4 py-3">
-                      <select
-                        value={lead.status}
-                        onChange={(e) => updateLead(lead.row, "status", e.target.value)}
-                        className={`text-xs font-medium px-3 py-1.5 rounded-full border focus:outline-none ${getStatusStyle(lead.status)}`}
-                      >
-                        {STATUS_OPTIONS.map((opt) => (
-                          <option key={opt.label} value={opt.label} className="bg-neutral-900 text-white">
-                            {opt.label}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
-                    <td className="px-4 py-3">
-                      <input
-                        type="text"
-                        defaultValue={lead.assignedTo}
-                        onBlur={(e) => updateLead(lead.row, "assignedTo", e.target.value)}
-                        placeholder="Unassigned"
-                        className="bg-transparent border border-white/10 rounded-lg px-2 py-1.5 text-sm text-white w-32 focus:outline-none focus:border-white/30"
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-        {savingRow && <p className="text-xs text-white/40 mt-3">Saving...</p>}
+        <div className="flex items-center gap-3">
+          <a
+            href="/admin/leads/receipt"
+            className="px-4 py-2 text-sm bg-neutral-800 hover:bg-neutral-700 text-neutral-200 rounded-lg transition"
+          >
+            Generate Receipt
+          </a>
+        </div>
       </div>
-    </main>
+
+      {/* Tabs Bar */}
+      <div className="flex gap-4 mb-6">
+        <button
+          onClick={() => setActiveTab("directory")}
+          className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition ${
+            activeTab === "directory" ? "bg-cyan-600 text-white" : "bg-neutral-900 text-neutral-400 hover:text-white"
+          }`}
+        >
+          <Database size={16} /> Saved Leads ({leads.length})
+        </button>
+        <button
+          onClick={() => setActiveTab("scraper")}
+          className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition ${
+            activeTab === "scraper" ? "bg-cyan-600 text-white" : "bg-neutral-900 text-neutral-400 hover:text-white"
+          }`}
+        >
+          <Search size={16} /> Map Lead Scraper
+        </button>
+      </div>
+
+      {/* Directory Tab */}
+      {activeTab === "directory" && (
+        <div className="bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden">
+          <div className="p-4 border-b border-neutral-800 flex justify-between items-center">
+            <h2 className="text-lg font-semibold text-white">Live Google Sheets Directory</h2>
+            <button onClick={fetchLeads} className="flex items-center gap-1 text-xs text-cyan-400 hover:underline">
+              <RefreshCw size={12} /> Refresh
+            </button>
+          </div>
+          {loading ? (
+            <div className="p-8 text-center text-neutral-500">Loading leads...</div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-neutral-950 text-neutral-400 border-b border-neutral-800">
+                  <tr>
+                    <th className="p-3">Business Name</th>
+                    <th className="p-3">Phone</th>
+                    <th className="p-3">Email</th>
+                    <th className="p-3">Service</th>
+                    <th className="p-3">Timestamp</th>
+                    <th className="p-3">Status</th>
+                    <th className="p-3">Assigned To</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-neutral-800">
+                  {leads.map((lead, idx) => (
+                    <tr key={idx} className="hover:bg-neutral-800/50">
+                      <td className="p-3 font-medium text-white">{lead.name}</td>
+                      <td className="p-3 text-neutral-300">{lead.phone || "—"}</td>
+                      <td className="p-3 text-cyan-400">{lead.email || "—"}</td>
+                      <td className="p-3 text-neutral-300">{lead.service}</td>
+                      <td className="p-3 text-neutral-500 text-xs">{lead.timestamp}</td>
+                      <td className="p-3">
+                        <span className="px-2 py-1 text-xs rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+                          {lead.status || "New"}
+                        </span>
+                      </td>
+                      <td className="p-3 text-neutral-400">{lead.assignedTo || "—"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Scraper Tab */}
+      {activeTab === "scraper" && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-5 bg-neutral-900 p-6 rounded-xl border border-neutral-800">
+            <h2 className="text-lg font-semibold mb-4 text-cyan-400">Targeting Parameters</h2>
+            <form onSubmit={triggerScraper} className="space-y-4">
+              <div>
+                <label className="block text-xs text-neutral-400 mb-1">Target Keyword / Niche</label>
+                <input
+                  type="text"
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                  placeholder="e.g. Plumbers, Dentists, Real Estate"
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 outline-none"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs text-neutral-400 mb-1">Location Strategy</label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setTargetType("radius")}
+                    className={`p-2 text-xs rounded-lg border ${
+                      targetType === "radius" ? "border-cyan-500 bg-cyan-500/10 text-cyan-300" : "border-neutral-800 text-neutral-400"
+                    }`}
+                  >
+                    Radius targeting
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTargetType("city")}
+                    className={`p-2 text-xs rounded-lg border ${
+                      targetType === "city" ? "border-cyan-500 bg-cyan-500/10 text-cyan-300" : "border-neutral-800 text-neutral-400"
+                    }`}
+                  >
+                    City / Zip / Sector
+                  </button>
+                </div>
+              </div>
+
+              {targetType === "city" ? (
+                <div>
+                  <label className="block text-xs text-neutral-400 mb-1">Location Name</label>
+                  <input
+                    type="text"
+                    value={cityName}
+                    onChange={(e) => setCityName(e.target.value)}
+                    placeholder="e.g. Gurugram Sector 29"
+                    className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 outline-none"
+                  />
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="block text-xs text-neutral-400 mb-1">Latitude</label>
+                      <input
+                        type="number"
+                        step="any"
+                        value={lat}
+                        onChange={(e) => setLat(parseFloat(e.target.value))}
+                        className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2 text-sm text-white outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-neutral-400 mb-1">Longitude</label>
+                      <input
+                        type="number"
+                        step="any"
+                        value={lng}
+                        onChange={(e) => setLng(parseFloat(e.target.value))}
+                        className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2 text-sm text-white outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="block text-xs text-neutral-400 mb-1">Radius Distance</label>
+                      <input
+                        type="number"
+                        min="1"
+                        max="50"
+                        value={radius}
+                        onChange={(e) => setRadius(Number(e.target.value))}
+                        className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2 text-sm text-white outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-neutral-400 mb-1">Unit</label>
+                      <select
+                        value={unit}
+                        onChange={(e: any) => setUnit(e.target.value)}
+                        className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2 text-sm text-white outline-none"
+                      >
+                        <option value="km">Kilometers (km)</option>
+                        <option value="miles">Miles (mi)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isScraping}
+                className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-medium rounded-lg text-sm transition flex items-center justify-center gap-2 disabled:opacity-50"
+              >
+                <Play size={16} /> {isScraping ? "Dispatching..." : "Start Lead Extraction"}
+              </button>
+
+              {scrapeStatus && (
+                <p className="text-xs text-center p-3 rounded bg-neutral-950 text-cyan-400 border border-cyan-900/50">
+                  {scrapeStatus}
+                </p>
+              )}
+            </form>
+          </div>
+
+          {/* Interactive Map Preview */}
+          <div className="lg:col-span-7 bg-neutral-900 p-4 rounded-xl border border-neutral-800 flex flex-col">
+            <h3 className="text-sm font-semibold mb-2 text-neutral-400">Coverage Map Preview</h3>
+            <div className="w-full h-[400px] rounded-lg overflow-hidden border border-neutral-800 relative bg-neutral-950">
+              <MapComponent lat={lat} lng={lng} radius={radius} unit={unit} targetType={targetType} />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
