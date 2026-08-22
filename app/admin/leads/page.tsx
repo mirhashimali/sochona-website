@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LogOut, Search, Play, Database, RefreshCw } from "lucide-react";
+import { LogOut, Search, Play, Database, RefreshCw, MapPin } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const MapComponent = dynamic(() => import("@/components/RadiusMap"), { ssr: false });
@@ -48,6 +48,25 @@ export default function LeadsDashboard() {
       console.error("Failed to load leads", err);
     } finally {
       setLoading(false);
+    }
+  }
+
+  // NEW: Function to translate Zip/City to Coordinates to move the map
+  async function locateOnMap() {
+    if (!cityName) return;
+    setScrapeStatus("Locating area on map...");
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cityName)}`);
+      const data = await res.json();
+      if (data && data.length > 0) {
+        setLat(parseFloat(data[0].lat));
+        setLng(parseFloat(data[0].lon));
+        setScrapeStatus(`✅ Map Locked to: ${data[0].display_name}`);
+      } else {
+        setScrapeStatus("❌ Could not find this location. Try adding a city or country name.");
+      }
+    } catch (err) {
+      setScrapeStatus("❌ Map verification failed.");
     }
   }
 
@@ -212,14 +231,24 @@ export default function LeadsDashboard() {
 
               {targetType === "city" ? (
                 <div>
-                  <label className="block text-xs text-neutral-400 mb-1">Location Name</label>
-                  <input
-                    type="text"
-                    value={cityName}
-                    onChange={(e) => setCityName(e.target.value)}
-                    placeholder="e.g. Gurugram Sector 29"
-                    className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 outline-none"
-                  />
+                  <label className="block text-xs text-neutral-400 mb-1">Location Name or Zip Code</label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={cityName}
+                      onChange={(e) => setCityName(e.target.value)}
+                      placeholder="e.g. 800008 or Gurugram Sector 29"
+                      className="flex-1 bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 outline-none"
+                    />
+                    <button
+                      type="button"
+                      onClick={locateOnMap}
+                      className="px-4 flex items-center gap-1 bg-neutral-800 hover:bg-neutral-700 text-cyan-400 text-sm font-medium rounded-lg transition"
+                    >
+                      <MapPin size={14} /> Verify
+                    </button>
+                  </div>
+                  <p className="text-xs text-neutral-500 mt-1">Type location and click Verify to lock coordinates.</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -270,19 +299,20 @@ export default function LeadsDashboard() {
                       </select>
                     </div>
                   </div>
+                  <p className="text-xs text-neutral-500 mt-1">You can also click anywhere on the map to drop the pin.</p>
                 </div>
               )}
 
               <button
                 type="submit"
                 disabled={isScraping}
-                className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-medium rounded-lg text-sm transition flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-medium rounded-lg text-sm transition flex items-center justify-center gap-2 disabled:opacity-50 mt-4"
               >
-                <Play size={16} /> {isScraping ? "Dispatching..." : "Start Lead Extraction"}
+                <Play size={16} /> {isScraping ? "Dispatching..." : "Lock & Start Extraction"}
               </button>
 
               {scrapeStatus && (
-                <p className="text-xs text-center p-3 rounded bg-neutral-950 text-cyan-400 border border-cyan-900/50">
+                <p className="text-xs text-center p-3 rounded bg-neutral-950 text-cyan-400 border border-cyan-900/50 mt-4">
                   {scrapeStatus}
                 </p>
               )}
@@ -292,8 +322,17 @@ export default function LeadsDashboard() {
           {/* Interactive Map Preview */}
           <div className="lg:col-span-7 bg-neutral-900 p-4 rounded-xl border border-neutral-800 flex flex-col">
             <h3 className="text-sm font-semibold mb-2 text-neutral-400">Coverage Map Preview</h3>
-            <div className="w-full h-[400px] rounded-lg overflow-hidden border border-neutral-800 relative bg-neutral-950">
-              <MapComponent lat={lat} lng={lng} radius={radius} unit={unit} targetType={targetType} />
+            <div className="w-full h-[400px] rounded-lg overflow-hidden border border-neutral-800 relative bg-neutral-950 cursor-crosshair">
+              {/* Notice we pass down setLat and setLng so clicking the map updates the form */}
+              <MapComponent 
+                lat={lat} 
+                lng={lng} 
+                radius={radius} 
+                unit={unit} 
+                targetType={targetType} 
+                setLat={setLat} 
+                setLng={setLng} 
+              />
             </div>
           </div>
         </div>
