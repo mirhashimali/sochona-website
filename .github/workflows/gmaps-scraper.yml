@@ -2,29 +2,30 @@ name: Google Maps Lead Scraper Pipeline
 
 on:
   repository_dispatch:
-    types: [run-gmaps-scraper]
+    types: [scrape_gmaps]
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: '20'
 
       - name: Install Dependencies
-        run: |
-          npm install playwright googleapis
-          npx playwright install chromium --with-deps
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
       - name: Execute Scraper
         env:
           CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
           GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
           GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
-          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
-        run: node scripts/scrape-gmaps.js
+        run: node scripts/gmaps-scraper.js
