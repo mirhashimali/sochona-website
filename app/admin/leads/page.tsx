@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { LogOut, Search, Play, Database, RefreshCw, MapPin } from "lucide-react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 
 const MapComponent = dynamic(() => import("@/components/RadiusMap"), { ssr: false });
 
@@ -18,6 +19,7 @@ interface Lead {
 }
 
 export default function LeadsDashboard() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<"directory" | "scraper">("directory");
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +53,17 @@ export default function LeadsDashboard() {
     }
   }
 
-  // NEW: Function to translate Zip/City to Coordinates to move the map
+  // Handle Logout via the API route shown in your screenshot
+  async function handleLogout() {
+    try {
+      await fetch("/api/admin/logout", { method: "POST" });
+      router.push("/admin/login");
+    } catch (err) {
+      console.error("Logout failed", err);
+    }
+  }
+
+  // Function to translate Zip/City to Coordinates to move the map
   async function locateOnMap() {
     if (!cityName) return;
     setScrapeStatus("Locating area on map...");
@@ -116,6 +128,12 @@ export default function LeadsDashboard() {
           >
             Generate Receipt
           </a>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 text-sm bg-red-900/20 hover:bg-red-900/40 text-red-400 border border-red-900/30 rounded-lg transition"
+          >
+            <LogOut size={16} /> Logout
+          </button>
         </div>
       </div>
 
