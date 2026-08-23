@@ -33,7 +33,7 @@ async function run() {
 
   await page.waitForTimeout(5000);
 
-  // Scroll through results
+  // Scroll through results pane to load items
   for (let i = 0; i < 4; i++) {
     await page.evaluate(() => {
       const pane = document.querySelector('div[role="feed"]');
@@ -52,17 +52,31 @@ async function run() {
       await listings[i].click();
       await page.waitForTimeout(2500);
 
+      // Extract Business Name
       const name = await page.$eval("h1", (el) => el.textContent.trim()).catch(() => "");
       if (!name) continue;
 
+      // Extract Phone Number
       const phone = await page
         .$eval('button[data-item-id*="phone"]', (el) => el.textContent.trim())
         .catch(() => "");
 
+      // Extract Website URL
       const website = await page
         .$eval('a[data-item-id="authority"]', (el) => el.href)
         .catch(() => "");
 
+      // Extract Physical Address
+      const address = await page
+        .$eval('button[data-item-id="address"]', (el) => el.textContent.trim())
+        .catch(() => "");
+
+      // Extract Google Maps Category/Details
+      const category = await page
+        .$eval('button[jsaction*="pane.rating.category"]', (el) => el.textContent.trim())
+        .catch(() => "");
+
+      // Crawl website for public email if available
       let email = "";
       if (website) {
         try {
@@ -73,24 +87,27 @@ async function run() {
           if (emailMatch) email = emailMatch[0];
           await webPage.close();
         } catch (e) {
-          // Pass if website block/timeout
+          // Fall through if website times out or blocks automated requests
         }
       }
 
       const timestamp = new Date().toISOString().split("T")[0];
       
-      // Row schema matching your Google Sheet: [Name, Email, Phone, Service, Timestamp, Status, AssignedTo]
+      // Strict schema mapped to Columns A through J
       newRows.push([
         name,
-        email,
+        website,
         phone,
+        email,
+        address,
+        category,
         keyword,
         timestamp,
         "New (Scraped)",
         "G-Maps Scraper Bot"
       ]);
 
-      console.log(`[Extracted] ${name} | Phone: ${phone} | Email: ${email}`);
+      console.log(`[Extracted] ${name} | Addr: ${address} | Phone: ${phone} | Email: ${email}`);
     } catch (err) {
       console.log(`Skipped listing ${i}:`, err.message);
     }
@@ -99,11 +116,11 @@ async function run() {
   await browser.close();
 
   if (newRows.length > 0) {
-    console.log(`[+] Appending ${newRows.length} new leads directly to Google Sheets...`);
+    console.log(`[+] Appending ${newRows.length} structured rows to 'Scraped Leads' tab...`);
     const sheets = getSheetsClient();
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "Sheet1!A:G",
+      range: "Scraped Leads!A:J",
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: newRows,
