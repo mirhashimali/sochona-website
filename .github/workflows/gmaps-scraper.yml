@@ -3,6 +3,7 @@ name: Google Maps Lead Scraper Pipeline
 on:
   repository_dispatch:
     types: [scrape_gmaps]
+  workflow_dispatch: # <--- This adds the manual "Run" button in GitHub
 
 jobs:
   scrape:
@@ -24,7 +25,8 @@ jobs:
 
       - name: Execute Scraper
         env:
-          CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+          # If triggered manually, it defaults to Plumbers in Gurugram
+          CLIENT_PAYLOAD: ${{ github.event_name == 'repository_dispatch' && toJson(github.event.client_payload) || '{"keyword":"Plumbers","location":"Gurugram","radius":5,"unit":"Kilometers (km)"}' }}
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
           GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
           GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
