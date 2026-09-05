@@ -57,7 +57,7 @@ export default function LeadsDashboard() {
   async function handleLogout() {
     try {
       await fetch("/api/admin/logout", { method: "POST" });
-      router.push("/admin/login");
+      router.push("/admin/leads/login");
     } catch (err) {
       console.error("Logout failed", err);
     }

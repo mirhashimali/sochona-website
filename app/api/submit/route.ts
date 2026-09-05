@@ -4,9 +4,35 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
   try {
-    // 1. Parse the incoming data from your frontend form
+    // 1. Parse the incoming data from frontend form
     const body = await req.json();
-    const { name, email, phone, service } = body;
+    const {
+      name = '',
+      contact = '',
+      email = '',
+      phone = '',
+      business = '',
+      service = '',
+      challenge = '',
+      variant = 'Global / North America',
+    } = body;
+
+    // Resolve contact information
+    const isContactEmail = contact && contact.includes('@');
+    const resolvedEmail = email || (isContactEmail ? contact : '');
+    const resolvedPhone = phone || (!isContactEmail ? contact : '');
+
+    // Resolve business and challenge
+    const resolvedBusiness = business || service || 'Not specified';
+    const resolvedChallenge = challenge ? challenge.trim() : '';
+
+    // Col D: We combine business and challenge so existing Google Sheets
+    // and /admin/leads dashboard display the challenge without column shifting!
+    const colDService = resolvedChallenge
+      ? `${resolvedBusiness} — Challenge: ${resolvedChallenge}`
+      : resolvedBusiness;
+
+    const timestamp = new Date().toLocaleString();
 
     // 2. Authenticate with Google Sheets
     const auth = new google.auth.GoogleAuth({
@@ -24,13 +50,33 @@ export async function POST(req: Request) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // 3. Append the lead to your Google Sheet
+    // 3. Append the lead to Google Sheet
+    // Columns:
+    // A: Name
+    // B: Email
+    // C: Phone / WhatsApp
+    // D: Service / Business (includes Challenge summary)
+    // E: Timestamp
+    // F: Status (default "No Answer" for Admin CRM)
+    // G: Assigned To (blank for Admin CRM)
+    // H: Challenge (Standalone dedicated column if user adds Column H)
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'Sheet1!A:E', // Appends to the first available row in Sheet1
+      range: 'Sheet1!A:H',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[name, email, phone, service, new Date().toLocaleString()]], // Adds a timestamp
+        values: [
+          [
+            name,
+            resolvedEmail,
+            resolvedPhone,
+            colDService,
+            timestamp,
+            'No Answer',
+            '',
+            resolvedChallenge,
+          ],
+        ],
       },
     });
 
@@ -47,16 +93,23 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: `admin@sochona.net, ${process.env.EMAIL_USER}`,
-      subject: `New Lead Alert: ${name}`,
+      subject: `🔥 New Lead Alert [${variant}]: ${name}`,
       text: `
-        Boom! You just got a new lead from the Sochona website.
-        
-        Name: ${name}
-        Email: ${email}
-        Phone: ${phone}
-        Industry: ${service}
-        
-        Get to work!
+Boom! You just got a new lead from the Sochona website.
+
+==================================================
+AUDIENCE / SOURCE: ${variant}
+==================================================
+• Name: ${name}
+• Direct Contact: ${resolvedPhone || resolvedEmail || contact}
+• WhatsApp / Phone: ${resolvedPhone || 'N/A'}
+• Email: ${resolvedEmail || 'N/A'}
+• Business & Website: ${resolvedBusiness}
+• Biggest Challenge: ${resolvedChallenge || 'None specified'}
+• Time: ${timestamp}
+==================================================
+
+Get to work!
       `,
     });
 

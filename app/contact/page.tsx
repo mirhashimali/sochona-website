@@ -33,7 +33,7 @@ export default function ContactPage() {
           
           {/* Form Container (Pushed first in DOM so it appears above on mobile / left on desktop) */}
           <div className="lg:col-span-7 bg-neutral-900/60 border border-neutral-800 p-8 md:p-10 rounded-3xl backdrop-blur-md shadow-2xl">
-            <LeadForm />
+            <LeadForm variant="global" showContainer={false} hideFooter={true} />
           </div>
 
           {/* Trust & Details ("What to expect") */}
