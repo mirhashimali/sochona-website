@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { Menu, X, ChevronDown, ArrowRight, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Sparkles, Calendar } from "lucide-react";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
   ssr: false,
@@ -142,6 +142,14 @@ export default function GlobalUI() {
           </Link>
 
           <Link
+            href="/book"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#007AFF] hover:bg-blue-600 text-white text-xs font-bold transition-all shadow-md shadow-blue-500/25 hover:scale-105 active:scale-95"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Book Call</span>
+          </Link>
+
+          <Link
             href="/contact"
             className="text-xs font-bold text-black bg-white px-5 py-2 rounded-full hover:bg-neutral-200 transition-all shadow-md"
           >
@@ -200,7 +208,15 @@ export default function GlobalUI() {
             <Link href="/blog" onClick={() => setIsMobileOpen(false)} className="text-2xl font-bold text-white">
               Blog
             </Link>
-            <Link href="/contact" onClick={() => setIsMobileOpen(false)} className="text-base font-bold text-black bg-white px-8 py-3 rounded-full mt-4">
+            <Link
+              href="/book"
+              onClick={() => setIsMobileOpen(false)}
+              className="text-base font-bold text-white bg-[#007AFF] hover:bg-blue-600 px-8 py-3 rounded-full mt-4 flex items-center gap-2 shadow-lg shadow-blue-500/30"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>Book Strategy Call</span>
+            </Link>
+            <Link href="/contact" onClick={() => setIsMobileOpen(false)} className="text-base font-bold text-black bg-white px-8 py-3 rounded-full mt-2">
               Contact Us
             </Link>
           </div>

@@ -93,6 +93,7 @@ export default function RootLayout({
                   <h4 className="font-bold text-white uppercase tracking-wider mb-4">Company</h4>
                   <ul className="space-y-2.5 text-white/70">
                     <li><Link href="/about" className="hover:text-white transition-colors">About Sochona</Link></li>
+                    <li><Link href="/book" className="text-[#007AFF] hover:text-blue-400 font-semibold transition-colors">Book Strategy Call</Link></li>
                     <li><Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
                     <li><Link href="/blog" className="hover:text-white transition-colors">Engineering Blog</Link></li>
                     <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
@@ -109,6 +110,7 @@ export default function RootLayout({
                 
                 <div className="flex items-center gap-5 text-white/50">
                   <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                  <Link href="/book" className="text-[#007AFF] hover:text-blue-400 transition-colors font-medium">Book Call</Link>
                   <Link href="/in" className="text-emerald-400 hover:text-emerald-300 transition-colors">India Edition</Link>
                   <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
                   <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>

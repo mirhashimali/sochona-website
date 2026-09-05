@@ -199,7 +199,7 @@ export default function LeadForm({
         </a>
       ) : (
         <Link
-          href="/contact"
+          href="/book"
           className="inline-flex items-center gap-2 text-xs font-semibold text-[#007AFF] hover:text-blue-400 transition-colors py-2 px-4 rounded-xl bg-[#007AFF]/10 border border-[#007AFF]/25 hover:border-[#007AFF]/40"
         >
           <span>Schedule a 30-min strategy call →</span>

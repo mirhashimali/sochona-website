@@ -23,6 +23,7 @@ const staticRoutes = [
   { path: "/in/custom-crm", priority: 0.8, changeFrequency: "monthly" as const },
 
   // Global Core Pages
+  { path: "/book", priority: 0.9, changeFrequency: "weekly" as const },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/contact", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/blog", priority: 0.8, changeFrequency: "weekly" as const },
