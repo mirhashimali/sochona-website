@@ -133,19 +133,12 @@ export default function GlobalUI() {
             Blog
           </Link>
 
-          <Link
-            href="/in"
-            className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold hover:bg-emerald-500/25 transition-all shadow-sm"
-          >
-            <span className="text-sm leading-none">🇮🇳</span>
-            <span>India</span>
-          </Link>
-
+          {/* TAILORED LUXURY BOOK CALL PILL */}
           <Link
             href="/book"
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#007AFF] hover:bg-blue-600 text-white text-xs font-bold transition-all shadow-md shadow-blue-500/25 hover:scale-105 active:scale-95"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.16] border border-white/20 text-white text-xs font-medium transition-all shadow-sm hover:scale-105 active:scale-95 group"
           >
-            <Calendar className="w-3.5 h-3.5" />
+            <Calendar className="w-3.5 h-3.5 text-[#007AFF] group-hover:scale-110 transition-transform" />
             <span>Book Call</span>
           </Link>
 
@@ -157,6 +150,7 @@ export default function GlobalUI() {
           </Link>
         </nav>
 
+        {/* Mobile Hamburger Button */}
         <button
           className="md:hidden pointer-events-auto relative z-[110] text-white p-2.5 bg-black/60 backdrop-blur-md rounded-full border border-white/15"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -165,16 +159,9 @@ export default function GlobalUI() {
           {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
 
+        {/* Mobile Fullscreen Drawer */}
         {isMobileOpen && (
           <div className="fixed inset-0 bg-neutral-950/95 backdrop-blur-2xl z-[105] flex flex-col items-center justify-start pt-24 pb-12 px-6 pointer-events-auto md:hidden overflow-y-auto space-y-6">
-            <Link
-              href="/in"
-              onClick={() => setIsMobileOpen(false)}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-bold text-sm shadow-lg mb-2"
-            >
-              <span>🇮🇳 Switch to India Edition →</span>
-            </Link>
-
             <div className="w-full max-w-xs flex flex-col items-center">
               <div className="flex items-center justify-center w-full gap-2">
                 <Link href="/services" onClick={() => setIsMobileOpen(false)} className="text-2xl font-bold text-white">
@@ -211,10 +198,10 @@ export default function GlobalUI() {
             <Link
               href="/book"
               onClick={() => setIsMobileOpen(false)}
-              className="text-base font-bold text-white bg-[#007AFF] hover:bg-blue-600 px-8 py-3 rounded-full mt-4 flex items-center gap-2 shadow-lg shadow-blue-500/30"
+              className="text-base font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-3 rounded-full mt-4 flex items-center gap-2"
             >
-              <Calendar className="w-4 h-4" />
-              <span>Book Strategy Call</span>
+              <Calendar className="w-4 h-4 text-[#007AFF]" />
+              <span>Book a Strategy Call</span>
             </Link>
             <Link href="/contact" onClick={() => setIsMobileOpen(false)} className="text-base font-bold text-black bg-white px-8 py-3 rounded-full mt-2">
               Contact Us
@@ -223,14 +210,14 @@ export default function GlobalUI() {
         )}
       </header>
 
-      {/* 2. BRIGHTENED 3D BACKGROUND (LIFTED 40% IN EXPOSURE) */}
+      {/* 2. BRIGHTENED 3D BACKGROUND */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-auto bg-black">
         <div
           className="absolute top-0 left-0"
           style={{ 
             width: "calc(100vw + 200px)", 
             height: "calc(100vh + 100px)",
-            filter: "brightness(1.4) contrast(1.08)" /* ← LIFTS THE DARK SHADOWS ACCROSS THE ENTIRE CANVAS */
+            filter: "brightness(1.4) contrast(1.08)"
           }}
         >
           <Spline scene="https://prod.spline.design/19UJG8bsVhWJAmeG/scene.splinecode" />
