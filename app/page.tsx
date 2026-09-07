@@ -37,11 +37,11 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center w-full bg-transparent text-white selection:bg-[#007AFF] selection:text-white relative overflow-hidden pb-28">
+    <main className="flex flex-col items-center w-full bg-transparent text-white selection:bg-[#007AFF] selection:text-white relative overflow-hidden pb-32">
       
-      {/* 1. HERO SECTION (Mobile-First Responsive Spacing) */}
+      {/* 1. HERO SECTION (Mobile-First Responsive Typography) */}
       <ScrollReveal>
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-8 flex flex-col items-center text-center relative z-10">
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-6 flex flex-col items-center text-center relative z-10">
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/50 border border-white/20 mb-5 sm:mb-6 backdrop-blur-xl shadow-lg">
             <span className="w-1.5 h-1.5 rounded-full bg-[#007AFF] animate-pulse"></span>
@@ -61,8 +61,8 @@ export default function Home() {
             Your digital presence shouldn't just look aesthetic. We engineer end-to-end infrastructure that pulls high-intent demand, converts clicks with AI, and automates operations while you sleep.
           </p>
 
-          {/* DUAL BUTTONS */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mb-8">
+          {/* DUAL BUTTONS WITH TACTILE MOBILE TARGETS */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mb-6 sm:mb-8">
             <a 
               href="#audit-form" 
               className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm tracking-wide transition-all duration-300 hover:bg-neutral-100 hover:scale-105 active:scale-95 shadow-2xl shadow-white/20 flex items-center justify-center gap-2 group"
@@ -71,7 +71,6 @@ export default function Home() {
               <ArrowRight className="w-3.5 h-3.5 text-[#007AFF] group-hover:translate-x-0.5 transition-transform" />
             </a>
 
-            {/* OBSIDIAN GLASS BOOK A MEETING BUTTON */}
             <Link 
               href="/book" 
               className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-black/75 hover:bg-black/90 border border-white/25 text-white font-medium text-xs sm:text-sm tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-black/50 backdrop-blur-md flex items-center justify-center gap-2"
@@ -81,7 +80,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* MICRO-SIGNALS (Wrapped for Mobile Screens, No Horizontal Overflow) */}
+          {/* MICRO-SIGNALS (Wrapped for Small Mobile Screens) */}
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] sm:text-xs text-white/75 font-normal tracking-wide drop-shadow px-2">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Sub-1s Edge Latency
@@ -97,10 +96,10 @@ export default function Home() {
         </section>
       </ScrollReveal>
 
-      {/* 2. RESEARCH BENCHMARKS (Responsive Mobile Grid) */}
+      {/* 2. RESEARCH BENCHMARKS (Clean 2x2 Grid Partitioning) */}
       <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 relative z-10">
         <ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-black/50 border border-white/15 backdrop-blur-xl shadow-2xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-white/15 backdrop-blur-xl shadow-2xl">
             <div className="text-center p-2 border-r border-white/10">
               <span className="text-2xl sm:text-3xl font-light text-blue-400 tracking-tight">3.4x</span>
               <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase tracking-wider font-medium leading-tight">
@@ -130,7 +129,7 @@ export default function Home() {
       </section>
 
       {/* 3. AUDIT FORM SECTION */}
-      <section id="audit-form" className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full relative z-10 scroll-mt-24">
+      <section id="audit-form" className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full relative z-10 scroll-mt-28">
         <LeadForm variant="global" />
       </section>
 
@@ -149,7 +148,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pt-2 sm:pt-6 pb-6 px-1 md:overflow-visible">
           
           <Link href="/attract" className="block group">
-            <div className="bg-black/50 border border-white/15 p-5 sm:p-8 rounded-2xl sm:rounded-3xl group-hover:border-blue-500/50 hover:bg-black/70 group-hover:-translate-y-2.5 group-hover:shadow-[0_15px_35px_rgba(0,122,255,0.15)] transition-all duration-300 h-full backdrop-blur-xl flex flex-col justify-between">
+            <div className="bg-neutral-950/90 border border-white/15 p-6 sm:p-8 rounded-2xl sm:rounded-3xl group-hover:border-blue-500/50 hover:bg-neutral-900/90 group-hover:-translate-y-2.5 group-hover:shadow-[0_15px_35px_rgba(0,122,255,0.15)] transition-all duration-300 h-full backdrop-blur-xl flex flex-col justify-between active:scale-[0.98]">
               <div>
                 <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-500/25 flex items-center justify-center mb-5 sm:mb-6 text-blue-400 group-hover:scale-110 group-hover:bg-blue-500/20 transition-all">
                   <Megaphone className="w-5 h-5" />
@@ -168,7 +167,7 @@ export default function Home() {
           </Link>
 
           <Link href="/convert" className="block group">
-            <div className="bg-black/50 border border-white/15 p-5 sm:p-8 rounded-2xl sm:rounded-3xl group-hover:border-purple-400/50 hover:bg-black/70 group-hover:-translate-y-2.5 group-hover:shadow-[0_15px_35px_rgba(168,85,247,0.15)] transition-all duration-300 h-full backdrop-blur-xl flex flex-col justify-between">
+            <div className="bg-neutral-950/90 border border-white/15 p-6 sm:p-8 rounded-2xl sm:rounded-3xl group-hover:border-purple-400/50 hover:bg-neutral-900/90 group-hover:-translate-y-2.5 group-hover:shadow-[0_15px_35px_rgba(168,85,247,0.15)] transition-all duration-300 h-full backdrop-blur-xl flex flex-col justify-between active:scale-[0.98]">
               <div>
                 <div className="w-11 h-11 rounded-2xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center mb-5 sm:mb-6 text-purple-400 group-hover:scale-110 group-hover:bg-purple-500/20 transition-all">
                   <Repeat className="w-5 h-5" />
@@ -187,7 +186,7 @@ export default function Home() {
           </Link>
 
           <Link href="/run-smarter" className="block group">
-            <div className="bg-black/50 border border-white/15 p-5 sm:p-8 rounded-2xl sm:rounded-3xl group-hover:border-emerald-400/50 hover:bg-black/70 group-hover:-translate-y-2.5 group-hover:shadow-[0_15px_35px_rgba(16,185,129,0.15)] transition-all duration-300 h-full backdrop-blur-xl flex flex-col justify-between">
+            <div className="bg-neutral-950/90 border border-white/15 p-6 sm:p-8 rounded-2xl sm:rounded-3xl group-hover:border-emerald-400/50 hover:bg-neutral-900/90 group-hover:-translate-y-2.5 group-hover:shadow-[0_15px_35px_rgba(16,185,129,0.15)] transition-all duration-300 h-full backdrop-blur-xl flex flex-col justify-between active:scale-[0.98]">
               <div>
                 <div className="w-11 h-11 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center mb-5 sm:mb-6 text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
                   <Cpu className="w-5 h-5" />
@@ -219,7 +218,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pt-2">
           <ScrollReveal>
-            <div className="bg-neutral-950/40 border border-white/10 p-5 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl hover:border-blue-500/40 transition-all">
+            <div className="bg-neutral-950/90 border border-white/10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl hover:border-blue-500/40 transition-all">
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-widest text-blue-400 font-semibold">B2B Enterprise</span>
                 <h3 className="text-base sm:text-lg font-medium text-white mt-2 mb-3">WordPress to Next.js + AI Qualification</h3>
@@ -235,7 +234,7 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="bg-neutral-950/40 border border-white/10 p-5 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl hover:border-teal-400/40 transition-all">
+            <div className="bg-neutral-950/90 border border-white/10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl hover:border-teal-400/40 transition-all">
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-widest text-teal-400 font-semibold">High-Growth Commerce</span>
                 <h3 className="text-base sm:text-lg font-medium text-white mt-2 mb-3">Edge Delivery & PMax Intent Engine</h3>
@@ -251,7 +250,7 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="bg-neutral-950/40 border border-white/10 p-5 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl hover:border-purple-400/40 transition-all">
+            <div className="bg-neutral-950/90 border border-white/10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl hover:border-purple-400/40 transition-all">
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-widest text-purple-400 font-semibold">Professional Services</span>
                 <h3 className="text-base sm:text-lg font-medium text-white mt-2 mb-3">Custom Mini-CRM & Proposal Flow</h3>
@@ -282,7 +281,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           <ScrollReveal>
-            <div className="bg-neutral-950/40 border border-white/10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl">
+            <div className="bg-neutral-950/90 border border-white/10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl">
               <div>
                 <div className="w-10 h-10 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-center justify-center mb-5 sm:mb-6">
                   <Layers className="w-5 h-5" />
@@ -299,7 +298,7 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="bg-neutral-950/40 border border-white/10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl">
+            <div className="bg-neutral-950/90 border border-white/10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl">
               <div>
                 <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-5 sm:mb-6">
                   <Zap className="w-5 h-5" />
@@ -316,7 +315,7 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="bg-neutral-950/40 border border-white/10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl">
+            <div className="bg-neutral-950/90 border border-white/10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl h-full flex flex-col justify-between backdrop-blur-xl">
               <div>
                 <div className="w-10 h-10 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-5 sm:mb-6">
                   <TrendingUp className="w-5 h-5" />
@@ -345,7 +344,7 @@ export default function Home() {
         </ScrollReveal>
 
         {/* Pillar A: Performance Marketing & SEO */}
-        <div className="bg-neutral-950/40 border border-white/10 p-5 sm:p-8 rounded-2xl sm:rounded-3xl backdrop-blur-xl">
+        <div className="bg-neutral-950/90 border border-white/10 p-5 sm:p-8 rounded-2xl sm:rounded-3xl backdrop-blur-xl">
           <div className="flex flex-col md:flex-row md:items-center justify-between pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-white/5 gap-4">
             <div>
               <h3 className="text-lg sm:text-xl font-medium text-white flex items-center gap-2.5 sm:gap-3">
@@ -394,7 +393,7 @@ export default function Home() {
         </div>
 
         {/* Pillar B: Web Development & Edge Engineering */}
-        <div className="bg-neutral-950/40 border border-white/10 p-5 sm:p-8 rounded-2xl sm:rounded-3xl backdrop-blur-xl">
+        <div className="bg-neutral-950/90 border border-white/10 p-5 sm:p-8 rounded-2xl sm:rounded-3xl backdrop-blur-xl">
           <div className="flex flex-col md:flex-row md:items-center justify-between pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-white/5 gap-4">
             <div>
               <h3 className="text-lg sm:text-xl font-medium text-white flex items-center gap-2.5 sm:gap-3">
@@ -431,7 +430,7 @@ export default function Home() {
         </div>
 
         {/* Pillar C: Business Automation & AI Systems */}
-        <div className="bg-neutral-950/40 border border-white/10 p-5 sm:p-8 rounded-2xl sm:rounded-3xl backdrop-blur-xl">
+        <div className="bg-neutral-950/90 border border-white/10 p-5 sm:p-8 rounded-2xl sm:rounded-3xl backdrop-blur-xl">
           <div className="flex flex-col md:flex-row md:items-center justify-between pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-white/5 gap-4">
             <div>
               <h3 className="text-lg sm:text-xl font-medium text-white flex items-center gap-2.5 sm:gap-3">
@@ -491,7 +490,7 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="bg-neutral-950/70 border border-white/15 p-6 sm:p-10 rounded-2xl sm:rounded-3xl backdrop-blur-2xl shadow-2xl space-y-4 sm:space-y-6">
+            <div className="bg-neutral-950/90 border border-white/15 p-6 sm:p-10 rounded-2xl sm:rounded-3xl backdrop-blur-2xl shadow-2xl space-y-4 sm:space-y-6">
               <span className="text-[10px] sm:text-xs font-mono text-[#007AFF] font-bold tracking-widest uppercase">Next Step</span>
               <h3 className="text-lg sm:text-xl font-medium text-white">Ready to Modernize Your Revenue Infrastructure?</h3>
               <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed">

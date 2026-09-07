@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import jsPDF from "jspdf";
 import Link from "next/link";
-import { ArrowLeft, Plus, Trash2 } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, FileCheck2 } from "lucide-react";
 
 interface LineItem {
   description: string;
@@ -11,8 +11,9 @@ interface LineItem {
 }
 
 const CURRENCIES = ["USD", "INR", "EUR", "GBP"];
-const PAYMENT_METHODS = ["PayPal", "Bank Transfer", "Other"];
+const PAYMENT_METHODS = ["PayPal", "Bank Transfer", "UPI", "Other"];
 const STATUS_OPTIONS = ["Paid", "Pending", "Draft"];
+const UDYAM_REG_NUMBER = "UDYAM-BR-26-0248887";
 
 function generateInvoiceNumber() {
   const now = new Date();
@@ -36,9 +37,9 @@ export default function ReceiptGeneratorPage() {
   const [discountRate, setDiscountRate] = useState("");
   const [paymentStatus, setPaymentStatus] = useState("Paid");
 
-  const [currency, setCurrency] = useState("USD");
+  const [currency, setCurrency] = useState("INR");
   const [invoiceNumber, setInvoiceNumber] = useState(generateInvoiceNumber());
-  const [paymentMethod, setPaymentMethod] = useState("PayPal");
+  const [paymentMethod, setPaymentMethod] = useState("Bank Transfer");
   const [otherMethod, setOtherMethod] = useState("");
   const [sending, setSending] = useState(false);
   const [message, setMessage] = useState("");
@@ -81,7 +82,7 @@ export default function ReceiptGeneratorPage() {
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
 
-    // Watermark (restrained bounds and subtle opacity to avoid header clashing)
+    // Watermark
     doc.saveGraphicsState();
     // @ts-ignore
     doc.setGState(new (doc as any).GState({ opacity: 0.04 }));
@@ -99,24 +100,30 @@ export default function ReceiptGeneratorPage() {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(22);
     doc.setTextColor(20, 20, 20);
-    doc.text("sochona.", 40, 55);
+    doc.text("sochona.", 40, 50);
 
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
+    doc.setFontSize(9);
     doc.setTextColor(90, 90, 90);
-    doc.text("connect@sochona.net", 40, 72);
+    doc.text("connect@sochona.net", 40, 65);
+    
+    // Official Udyam Registration on PDF
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8.5);
+    doc.setTextColor(5, 150, 105);
+    doc.text(`MSME Reg: ${UDYAM_REG_NUMBER} (Bihar, India)`, 40, 78);
 
     // Invoice Meta & Status Badge
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
     doc.setTextColor(20, 20, 20);
-    doc.text("RECEIPT", pageWidth - 40, 55, { align: "right" });
+    doc.text("RECEIPT", pageWidth - 40, 50, { align: "right" });
 
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
+    doc.setFontSize(9);
     doc.setTextColor(90, 90, 90);
-    doc.text(`Invoice #: ${invoiceNumber}`, pageWidth - 40, 72, { align: "right" });
-    doc.text(`Date: ${new Date().toLocaleDateString()}`, pageWidth - 40, 86, { align: "right" });
+    doc.text(`Invoice #: ${invoiceNumber}`, pageWidth - 40, 65, { align: "right" });
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, pageWidth - 40, 78, { align: "right" });
 
     // Status Badge on PDF
     doc.setFont("helvetica", "bold");
@@ -124,40 +131,40 @@ export default function ReceiptGeneratorPage() {
     const badgeText = paymentStatus.toUpperCase();
     const badgeWidth = doc.getTextWidth(badgeText) + 16;
     doc.setFillColor(paymentStatus === "Paid" ? 220 : 240, paymentStatus === "Paid" ? 252 : 240, paymentStatus === "Paid" ? 231 : 240);
-    doc.roundedRect(pageWidth - 40 - badgeWidth, 96, badgeWidth, 18, 4, 4, "F");
+    doc.roundedRect(pageWidth - 40 - badgeWidth, 88, badgeWidth, 18, 4, 4, "F");
     doc.setTextColor(paymentStatus === "Paid" ? 20 : 100, paymentStatus === "Paid" ? 83 : 100, paymentStatus === "Paid" ? 43 : 100);
-    doc.text(badgeText, pageWidth - 40 - badgeWidth / 2, 108, { align: "center" });
+    doc.text(badgeText, pageWidth - 40 - badgeWidth / 2, 100, { align: "center" });
 
     doc.setDrawColor(220, 220, 220);
-    doc.line(40, 125, pageWidth - 40, 125);
+    doc.line(40, 118, pageWidth - 40, 118);
 
     // Billed To
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
     doc.setTextColor(20, 20, 20);
-    doc.text("Billed To", 40, 145);
+    doc.text("Billed To", 40, 138);
 
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
+    doc.setFontSize(9.5);
     doc.setTextColor(60, 60, 60);
-    doc.text(clientName || "-", 40, 162);
-    doc.text(clientEmail || "-", 40, 177);
-    if (clientPhone) doc.text(clientPhone, 40, 192);
+    doc.text(clientName || "-", 40, 153);
+    doc.text(clientEmail || "-", 40, 167);
+    if (clientPhone) doc.text(clientPhone, 40, 181);
 
     // Table Header
-    const tableTop = 220;
+    const tableTop = 205;
     doc.setFillColor(245, 245, 245);
-    doc.rect(40, tableTop, pageWidth - 80, 24, "F");
+    doc.rect(40, tableTop, pageWidth - 80, 22, "F");
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(10);
+    doc.setFontSize(9.5);
     doc.setTextColor(20, 20, 20);
-    doc.text("Description", 50, tableTop + 16);
-    doc.text("Amount", pageWidth - 50, tableTop + 16, { align: "right" });
+    doc.text("Description", 50, tableTop + 15);
+    doc.text("Amount", pageWidth - 50, tableTop + 15, { align: "right" });
 
     // Table Rows
-    let currentY = tableTop + 40;
+    let currentY = tableTop + 36;
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
+    doc.setFontSize(9.5);
     doc.setTextColor(60, 60, 60);
 
     items.forEach((item) => {
@@ -169,49 +176,49 @@ export default function ReceiptGeneratorPage() {
 
     doc.setDrawColor(220, 220, 220);
     doc.line(40, currentY, pageWidth - 40, currentY);
-    currentY += 20;
+    currentY += 18;
 
     // Totals Section
     const rightAlignX = pageWidth - 50;
     const labelX = pageWidth - 180;
 
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
+    doc.setFontSize(9.5);
     doc.setTextColor(90, 90, 90);
     doc.text("Subtotal", labelX, currentY);
     doc.text(`${currency} ${subtotal.toFixed(2)}`, rightAlignX, currentY, { align: "right" });
-    currentY += 16;
+    currentY += 15;
 
     if (taxRate && parseFloat(taxRate) > 0) {
       doc.text(`Tax (${taxRate}%)`, labelX, currentY);
       doc.text(`${currency} ${taxAmount.toFixed(2)}`, rightAlignX, currentY, { align: "right" });
-      currentY += 16;
+      currentY += 15;
     }
 
     if (discountRate && parseFloat(discountRate) > 0) {
       doc.text(`Discount (${discountRate}%)`, labelX, currentY);
       doc.text(`-${currency} ${discountAmount.toFixed(2)}`, rightAlignX, currentY, { align: "right" });
-      currentY += 16;
+      currentY += 15;
     }
 
     // Final Total
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(12);
+    doc.setFontSize(11.5);
     doc.setTextColor(20, 20, 20);
     doc.text("Total", labelX, currentY + 4);
     doc.text(`${currency} ${finalTotal}`, rightAlignX, currentY + 4, { align: "right" });
-    currentY += 35;
+    currentY += 32;
 
     const finalMethod = paymentMethod === "Other" ? otherMethod : paymentMethod;
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
+    doc.setFontSize(9.5);
     doc.setTextColor(90, 90, 90);
     doc.text(`Payment Method: ${finalMethod || "-"}`, 40, currentY);
 
     // Footer
-    doc.setFontSize(9);
+    doc.setFontSize(8.5);
     doc.setTextColor(140, 140, 140);
-    doc.text("Thank you for your business.", 40, pageHeight - 40);
+    doc.text("Thank you for your business. Sochona Digital & AI Systems.", 40, pageHeight - 40);
 
     return doc;
   }
@@ -240,10 +247,19 @@ export default function ReceiptGeneratorPage() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-12">
       <div className="max-w-7xl mx-auto">
-        <Link href="/admin/leads" className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors mb-6">
-          <ArrowLeft className="w-4 h-4" /> Back to Leads
-        </Link>
-        <h1 className="text-2xl font-semibold mb-8">Receipt Generator & Preview</h1>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <Link href="/admin/leads" className="inline-flex items-center gap-2 text-xs text-white/50 hover:text-white transition-colors mb-3">
+              <ArrowLeft className="w-4 h-4" /> Back to Leads
+            </Link>
+            <h1 className="text-2xl font-semibold">Receipt Generator & Preview</h1>
+          </div>
+          
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-xs text-emerald-400 font-mono">
+            <FileCheck2 className="w-4 h-4" />
+            <span>MSME: {UDYAM_REG_NUMBER} (Bihar)</span>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Form Section */}
@@ -305,11 +321,11 @@ export default function ReceiptGeneratorPage() {
               ))}
             </div>
 
-            {/* Tax & Discount Optional Inputs */}
+            {/* Tax & Discount */}
             <div className="grid grid-cols-2 gap-4 pt-2">
               <div>
                 <label className="text-xs text-white/50 mb-1 block">Tax Rate % (Optional)</label>
-                <input type="number" placeholder="e.g. 10" value={taxRate} onChange={(e) => setTaxRate(e.target.value)} className="w-full bg-neutral-900 border border-white/10 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-white/30" />
+                <input type="number" placeholder="e.g. 18" value={taxRate} onChange={(e) => setTaxRate(e.target.value)} className="w-full bg-neutral-900 border border-white/10 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-white/30" />
               </div>
               <div>
                 <label className="text-xs text-white/50 mb-1 block">Discount % (Optional)</label>

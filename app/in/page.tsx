@@ -46,7 +46,7 @@ export default function IndiaGrowthPage() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
-    <main className="flex flex-col items-center w-full bg-transparent text-white selection:bg-[#007AFF] selection:text-white relative overflow-hidden pb-32">
+    <main className="flex flex-col items-center w-full bg-transparent text-white selection:bg-[#007AFF] selection:text-white relative overflow-hidden pb-44">
 
       {/* Google Schema.org Structured Data */}
       <script
@@ -73,14 +73,14 @@ export default function IndiaGrowthPage() {
       <ScrollReveal>
         <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-8 flex flex-col items-center text-center relative z-10">
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/50 border border-white/20 mb-5 sm:mb-6 backdrop-blur-xl shadow-lg">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-950/80 border border-white/20 mb-5 sm:mb-6 backdrop-blur-xl shadow-lg">
             <span className="w-1.5 h-1.5 rounded-full bg-[#007AFF] animate-pulse"></span>
             <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase text-white/90">
               Bharat Architecture Edition
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-white mb-4 sm:mb-5 drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] leading-[1.2] max-w-3xl text-balance">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-white mb-4 sm:mb-5 drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-[1.2] max-w-3xl text-balance">
             Engineered for Revenue. <br />
             <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-white/95 to-white/75 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
               Junk Leads Band. Sovereign Systems Shuru.
@@ -91,7 +91,7 @@ export default function IndiaGrowthPage() {
             No broken WordPress templates. No monthly software ki jhanjhat. Hum banate hain sub-second digital systems jo verified customer inquiries seedha aapke <span className="text-[#007AFF] font-medium">WhatsApp</span> aur private CRM dashboard par deliver karte hain.
           </p>
 
-          {/* DUAL BUTTONS WITH RESPONSIVE TOUCH PADDING */}
+          {/* DUAL BUTTONS */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mb-8">
             <a 
               href="#audit-form" 
@@ -103,75 +103,72 @@ export default function IndiaGrowthPage() {
 
             <Link 
               href="/book" 
-              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-black/75 hover:bg-black/90 border border-white/25 text-white font-medium text-xs sm:text-sm tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-black/50 backdrop-blur-md flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-neutral-950/85 hover:bg-neutral-900 border border-white/25 text-white font-medium text-xs sm:text-sm tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-black/50 backdrop-blur-md flex items-center justify-center gap-2"
             >
               <Calendar className="w-3.5 h-3.5 text-[#007AFF]" />
               <span>Book a Meeting</span>
             </Link>
           </div>
 
-          {/* ⚡ LIVING ARTIFACT: RESPONSIVE HUD (Readable 12-13px on Mobile, No Squishing) */}
-          <div className="w-full max-w-xl p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-black/55 border border-white/20 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] text-left relative overflow-hidden group hover:border-white/35 transition-all">
+          {/* ⚡ LIVING ARTIFACT: OPAQUE OBSIDIAN HUD (No Yellow Bleed • Readable Mobile Layout) */}
+          <div className="w-full max-w-xl p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-white/25 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.8)] text-left relative overflow-hidden group">
             
             {/* HUD Header */}
             <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3 text-xs font-mono">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span className="text-white/90 font-bold uppercase tracking-wider text-[11px] sm:text-xs">SOCHONA ENGINE // LIVE HUD</span>
+                <span className="text-white font-bold uppercase tracking-wider text-[11px] sm:text-xs">SOCHONA ENGINE // LIVE HUD</span>
               </div>
-              <span className="text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold">
+              <span className="text-blue-400 bg-blue-500/15 border border-blue-500/30 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold">
                 MUMBAI (0.38s)
               </span>
             </div>
 
-            {/* Event Rows (Stacked & Clean on Mobile • Wide on Desktop) */}
+            {/* Event Rows (Stacked on Mobile, Wide on Desktop) */}
             <div className="space-y-2.5 font-mono text-xs">
               
-              {/* Event 1 */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 sm:p-1.5 rounded-xl bg-white/[0.02] sm:bg-transparent">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 sm:p-1.5 rounded-xl bg-white/[0.04]">
                 <div className="flex items-center gap-2">
                   <span className="text-white/40 text-[11px]">[00:01.2s]</span>
-                  <span className="text-white/90 text-xs sm:text-sm font-medium">Google Search Intent</span>
+                  <span className="text-white font-medium text-xs sm:text-sm">Google Search Intent</span>
                 </div>
                 <div className="flex items-center justify-between sm:justify-end gap-2">
-                  <span className="text-blue-400 text-xs">"B2B Exporter"</span>
-                  <span className="text-emerald-400 font-bold text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">VERIFIED</span>
+                  <span className="text-blue-400 text-xs font-semibold">"B2B Exporter"</span>
+                  <span className="text-emerald-400 font-bold text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30">VERIFIED</span>
                 </div>
               </div>
 
-              {/* Event 2 */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 sm:p-1.5 rounded-xl bg-white/[0.02] sm:bg-transparent">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 sm:p-1.5 rounded-xl bg-white/[0.04]">
                 <div className="flex items-center gap-2">
                   <span className="text-white/40 text-[11px]">[00:01.8s]</span>
-                  <span className="text-white/90 text-xs sm:text-sm font-medium">WhatsApp Bot Dispatched</span>
+                  <span className="text-white font-medium text-xs sm:text-sm">WhatsApp Bot Dispatched</span>
                 </div>
                 <div className="flex items-center justify-between sm:justify-end gap-2">
-                  <span className="text-white/60 text-xs">Hindi / Eng</span>
-                  <span className="text-teal-400 font-bold text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-teal-500/10 border border-teal-500/20">1.2s</span>
+                  <span className="text-white/70 text-xs">Hindi / Eng</span>
+                  <span className="text-teal-400 font-bold text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-teal-500/15 border border-teal-500/30">1.2s</span>
                 </div>
               </div>
 
-              {/* Event 3 */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 sm:p-1.5 rounded-xl bg-white/[0.02] sm:bg-transparent">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 sm:p-1.5 rounded-xl bg-white/[0.04]">
                 <div className="flex items-center gap-2">
                   <span className="text-white/40 text-[11px]">[00:02.4s]</span>
-                  <span className="text-white/90 text-xs sm:text-sm font-medium">Portal Synchronization</span>
+                  <span className="text-white font-medium text-xs sm:text-sm">Portal Synchronization</span>
                 </div>
                 <div className="flex items-center justify-between sm:justify-end gap-2">
-                  <span className="text-white/60 text-xs">Zero SaaS Rent</span>
-                  <span className="text-purple-400 font-bold text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-purple-500/10 border border-purple-500/20">ROUTED</span>
+                  <span className="text-white/70 text-xs">Zero SaaS Rent</span>
+                  <span className="text-purple-400 font-bold text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-purple-500/15 border border-purple-500/30">ROUTED</span>
                 </div>
               </div>
 
             </div>
 
             {/* HUD Footer Readout */}
-            <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-white/50 uppercase tracking-wider">
+            <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-white/60 uppercase tracking-wider">
               <span>Latency: 38ms</span>
               <span>•</span>
               <span>LCP: 0.6s (Pass)</span>
               <span>•</span>
-              <span className="text-emerald-400 font-semibold">100% Intent</span>
+              <span className="text-emerald-400 font-bold">100% Intent</span>
             </div>
 
           </div>
@@ -179,10 +176,10 @@ export default function IndiaGrowthPage() {
         </section>
       </ScrollReveal>
 
-      {/* 2. RESEARCH BENCHMARKS (Responsive Mobile Grid) */}
+      {/* 2. RESEARCH BENCHMARKS */}
       <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 relative z-10">
         <ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-black/50 border border-white/15 backdrop-blur-xl shadow-2xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-white/15 backdrop-blur-xl shadow-2xl">
             <div className="text-center p-2 border-r border-white/10">
               <span className="text-2xl sm:text-3xl font-light text-blue-400 tracking-tight">9x</span>
               <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase tracking-wider font-medium leading-tight">
@@ -211,7 +208,7 @@ export default function IndiaGrowthPage() {
         </ScrollReveal>
       </section>
 
-      {/* 3. GROUND REALITY (Comfortable Mobile Reading) */}
+      {/* 3. GROUND REALITY (Solid Contrast Cards) */}
       <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative z-10 pointer-events-auto">
         <ScrollReveal>
           <div className="text-center mb-8 sm:mb-12">
@@ -220,10 +217,10 @@ export default function IndiaGrowthPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-black/50 border border-red-500/20 backdrop-blur-xl">
-              <span className="text-[10px] sm:text-xs font-mono text-red-400/80 uppercase tracking-widest font-semibold">Purana Tariqa</span>
+            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-red-500/20 backdrop-blur-xl shadow-xl">
+              <span className="text-[10px] sm:text-xs font-mono text-red-400/90 uppercase tracking-widest font-semibold">Purana Tariqa</span>
               <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-4 sm:mb-6">Freelancers & Typical Agency Retainers</h3>
-              <ul className="space-y-3.5 sm:space-y-4 text-xs sm:text-sm text-white/75 leading-relaxed font-normal">
+              <ul className="space-y-3.5 sm:space-y-4 text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
                 <li className="flex items-start gap-3">
                   <span className="text-red-400 font-bold">—</span>
                   <span><strong>80% Junk Leads:</strong> Ads chalaye par callers bolte hain <em>"Maine galti se click kiya"</em> ya students job mangte hain.</span>
@@ -243,13 +240,13 @@ export default function IndiaGrowthPage() {
               </ul>
             </div>
 
-            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-black/50 border border-blue-500/25 backdrop-blur-xl relative">
+            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-blue-500/30 backdrop-blur-xl shadow-xl relative">
               <div className="absolute top-4 right-4 text-[10px] font-mono text-[#007AFF] uppercase tracking-widest font-bold">
                 Production Standard
               </div>
-              <span className="text-[10px] sm:text-xs font-mono text-blue-400/80 uppercase tracking-widest font-semibold">The Sochona System</span>
+              <span className="text-[10px] sm:text-xs font-mono text-blue-400/90 uppercase tracking-widest font-semibold">The Sochona System</span>
               <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-4 sm:mb-6">Unified Revenue Infrastructure</h3>
-              <ul className="space-y-3.5 sm:space-y-4 text-xs sm:text-sm text-white/85 leading-relaxed font-normal">
+              <ul className="space-y-3.5 sm:space-y-4 text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                 <li className="flex items-start gap-3">
                   <span className="text-[#007AFF] font-bold">✓</span>
                   <span><strong>Verified Inquiries:</strong> Strict intent-based funnels jo sirf serious buyers ko capture karte hain.</span>
@@ -287,12 +284,12 @@ export default function IndiaGrowthPage() {
         <div className="flex md:grid md:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto md:overflow-visible pt-4 sm:pt-8 pb-8 px-1 snap-x snap-mandatory scrollbar-none">
           
           <Link href="/in/zero-ad-waste" className="block min-w-[280px] sm:min-w-[320px] md:min-w-0 snap-center">
-            <div className="h-full bg-black/50 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-blue-500/50 hover:bg-black/70 hover:shadow-[0_15px_35px_rgba(0,122,255,0.15)] group cursor-pointer">
+            <div className="h-full bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-blue-500/50 hover:shadow-[0_15px_35px_rgba(0,122,255,0.15)] group cursor-pointer">
               <div>
                 <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-500/25 flex items-center justify-center mb-5 text-blue-400 group-hover:scale-110 group-hover:bg-blue-500/20 transition-all">
                   <TrendingUp className="w-5 h-5" />
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-blue-400/80">Phase 01</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-blue-400 font-semibold">Phase 01</span>
                 <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-2 group-hover:text-blue-300 transition-colors">1. High-Intent Ads</h3>
                 <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed">
                   Google Search aur Meta ads jo exact unhi verified logon ko target karte hain jo aaj aapki service khareedne ke liye search kar rahe hain.
@@ -306,12 +303,12 @@ export default function IndiaGrowthPage() {
           </Link>
 
           <Link href="/in/speed-infrastructure" className="block min-w-[280px] sm:min-w-[320px] md:min-w-0 snap-center">
-            <div className="h-full bg-black/50 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-teal-400/50 hover:bg-black/70 hover:shadow-[0_15px_35px_rgba(20,184,166,0.15)] group cursor-pointer">
+            <div className="h-full bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-teal-400/50 hover:shadow-[0_15px_35px_rgba(20,184,166,0.15)] group cursor-pointer">
               <div>
                 <div className="w-11 h-11 rounded-2xl bg-teal-500/10 border border-teal-500/25 flex items-center justify-center mb-5 text-teal-400 group-hover:scale-110 group-hover:bg-teal-500/20 transition-all">
                   <Zap className="w-5 h-5" />
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-teal-400/80">Phase 02</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-teal-400 font-semibold">Phase 02</span>
                 <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-2 group-hover:text-teal-300 transition-colors">2. Blazing Speed Web</h3>
                 <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed">
                   React aur Next.js par custom code. Zero bloated plugins, 100% security, aur Jio/Airtel 4G/5G par sub-second instant mobile loading.
@@ -325,18 +322,18 @@ export default function IndiaGrowthPage() {
           </Link>
 
           <Link href="/in/whatsapp-automation" className="block min-w-[280px] sm:min-w-[320px] md:min-w-0 snap-center">
-            <div className="h-full bg-black/50 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-emerald-400/50 hover:bg-black/70 hover:shadow-[0_15px_35px_rgba(16,185,129,0.15)] group cursor-pointer">
+            <div className="h-full bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-emerald-400/50 hover:shadow-[0_15px_35px_rgba(16,185,129,0.15)] group cursor-pointer">
               <div>
                 <div className="w-11 h-11 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center mb-5 text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
                   <MessageCircle className="w-5 h-5" />
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400/80">Phase 03</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">Phase 03</span>
                 <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-2 group-hover:text-emerald-300 transition-colors">3. WhatsApp Automation</h3>
                 <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed">
                   24/7 automated agent jo client ke sawalon ka jawab deta hai, product catalog bhejta hai, aur direct calendar me meeting schedule karta hai.
                 </p>
               </div>
-              <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-emerald-400 font-medium group-hover:translate-x-0.5 transition-all">
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-emerald-400 font-medium group-hover:translate-x-0.5 transition-all">
                 <span>Instant 24/7 Response</span>
                 <ChevronRight className="w-4 h-4 opacity-70 group-hover:opacity-100" />
               </div>
@@ -344,12 +341,12 @@ export default function IndiaGrowthPage() {
           </Link>
 
           <Link href="/in/custom-crm" className="block min-w-[280px] sm:min-w-[320px] md:min-w-0 snap-center">
-            <div className="h-full bg-black/50 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-amber-400/50 hover:bg-black/70 hover:shadow-[0_15px_35px_rgba(245,158,11,0.15)] group cursor-pointer">
+            <div className="h-full bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-amber-400/50 hover:shadow-[0_15px_35px_rgba(245,158,11,0.15)] group cursor-pointer">
               <div>
                 <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center mb-5 text-amber-400 group-hover:scale-110 group-hover:bg-amber-500/20 transition-all">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400/80">Phase 04</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-semibold">Phase 04</span>
                 <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-2 group-hover:text-amber-300 transition-colors">4. Custom Lead Portal</h3>
                 <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed">
                   Aapka apna proprietary dashboard jahan saari leads, call recordings aur follow-ups 1 click par accessible hoti hain without SaaS fees.
@@ -368,7 +365,7 @@ export default function IndiaGrowthPage() {
       {/* 5. INDUSTRY VERTICALS */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 pointer-events-auto w-full relative z-10">
         <ScrollReveal>
-          <div className="bg-black/50 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-12 backdrop-blur-2xl">
+          <div className="bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-12 backdrop-blur-2xl shadow-xl">
             <div className="max-w-xl mb-8 sm:mb-10">
               <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#007AFF]">Industry Specialization</span>
               <h2 className="text-2xl sm:text-3xl font-light text-white mt-2 mb-2">Sectors Where We Deploy Systems</h2>
@@ -379,7 +376,7 @@ export default function IndiaGrowthPage() {
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 text-center">
               <Link href="/in/b2b-manufacturing" className="block">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/10 hover:border-blue-500/40 hover:bg-blue-500/[0.05] transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
+                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-blue-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
                     <Factory className="w-5 h-5 text-blue-400" />
                   </div>
@@ -388,7 +385,7 @@ export default function IndiaGrowthPage() {
               </Link>
 
               <Link href="/in/healthcare" className="block">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
+                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-emerald-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
                     <Stethoscope className="w-5 h-5 text-emerald-400" />
                   </div>
@@ -397,7 +394,7 @@ export default function IndiaGrowthPage() {
               </Link>
 
               <Link href="/in/real-estate" className="block">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/10 hover:border-purple-500/40 hover:bg-purple-500/[0.05] transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
+                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-purple-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
                     <Building2 className="w-5 h-5 text-purple-400" />
                   </div>
@@ -406,7 +403,7 @@ export default function IndiaGrowthPage() {
               </Link>
 
               <Link href="/in/education" className="block">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/10 hover:border-amber-500/40 hover:bg-amber-500/[0.05] transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
+                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-amber-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
                     <GraduationCap className="w-5 h-5 text-amber-400" />
                   </div>
@@ -415,7 +412,7 @@ export default function IndiaGrowthPage() {
               </Link>
 
               <Link href="/in/d2c-brands" className="block col-span-2 md:col-span-1">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/40 hover:bg-rose-500/[0.05] transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
+                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-rose-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-rose-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
                     <ShoppingBag className="w-5 h-5 text-rose-400" />
                   </div>
@@ -427,8 +424,8 @@ export default function IndiaGrowthPage() {
         </ScrollReveal>
       </section>
 
-      {/* 6. FAQ (Comfortable Mobile Typography) */}
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 pointer-events-auto w-full relative z-10">
+      {/* 6. FAQ (FIXED HEADER COLLISION & OPAQUE OBSIDIAN CARDS) */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-16 pb-20 pointer-events-auto w-full relative z-10 scroll-mt-32">
         <ScrollReveal>
           <div className="text-center mb-8 sm:mb-12">
             <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#007AFF]">Clear Answers</span>
@@ -437,7 +434,7 @@ export default function IndiaGrowthPage() {
           </div>
 
           <div className="space-y-3.5 sm:space-y-4">
-            <div className="p-5 sm:p-6 rounded-2xl bg-black/50 border border-white/15 backdrop-blur-md">
+            <div className="p-5 sm:p-6 rounded-2xl bg-neutral-950/90 border border-white/20 backdrop-blur-xl shadow-lg">
               <h3 className="text-sm sm:text-base font-medium text-white mb-2 flex items-center justify-between">
                 <span>1. Kya hume website aur code ka 100% ownership milta hai?</span>
                 <span className="text-[#007AFF] text-xs">✓</span>
@@ -447,7 +444,7 @@ export default function IndiaGrowthPage() {
               </p>
             </div>
 
-            <div className="p-5 sm:p-6 rounded-2xl bg-black/50 border border-white/15 backdrop-blur-md">
+            <div className="p-5 sm:p-6 rounded-2xl bg-neutral-950/90 border border-white/20 backdrop-blur-xl shadow-lg">
               <h3 className="text-sm sm:text-base font-medium text-white mb-2 flex items-center justify-between">
                 <span>2. Local freelancers ya typical digital marketing agencies se aap alag kaise hain?</span>
                 <span className="text-[#007AFF] text-xs">✓</span>
@@ -457,7 +454,7 @@ export default function IndiaGrowthPage() {
               </p>
             </div>
 
-            <div className="p-5 sm:p-6 rounded-2xl bg-black/50 border border-white/15 backdrop-blur-md">
+            <div className="p-5 sm:p-6 rounded-2xl bg-neutral-950/90 border border-white/20 backdrop-blur-xl shadow-lg">
               <h3 className="text-sm sm:text-base font-medium text-white mb-2 flex items-center justify-between">
                 <span>3. System deploy hone me kitna time lagta hai?</span>
                 <span className="text-[#007AFF] text-xs">✓</span>
@@ -467,7 +464,7 @@ export default function IndiaGrowthPage() {
               </p>
             </div>
 
-            <div className="p-5 sm:p-6 rounded-2xl bg-black/50 border border-white/15 backdrop-blur-md">
+            <div className="p-5 sm:p-6 rounded-2xl bg-neutral-950/90 border border-white/20 backdrop-blur-xl shadow-lg">
               <h3 className="text-sm sm:text-base font-medium text-white mb-2 flex items-center justify-between">
                 <span>4. Kya hume monthly software maintenance fees deni hogi?</span>
                 <span className="text-[#007AFF] text-xs">✓</span>
@@ -480,18 +477,18 @@ export default function IndiaGrowthPage() {
         </ScrollReveal>
       </section>
 
-      {/* 7. AUDIT FORM (Preserved variant="in") */}
-      <section id="audit-form" className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full relative z-10 pointer-events-auto scroll-mt-24">
+      {/* 7. AUDIT FORM */}
+      <section id="audit-form" className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full relative z-10 pointer-events-auto scroll-mt-28">
         <LeadForm variant="in" />
       </section>
 
-      {/* 8. DISCREET LUXURY WHATSAPP FLOAT */}
-      <div className="fixed bottom-5 sm:bottom-6 right-5 sm:right-6 z-50 pointer-events-auto">
+      {/* 8. DISCREET LUXURY WHATSAPP FLOAT (Safe Clearance Positioned) */}
+      <div className="fixed bottom-6 right-6 z-50 pointer-events-auto">
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-black/80 border border-white/20 text-white/90 text-xs sm:text-sm font-medium backdrop-blur-2xl shadow-2xl hover:border-emerald-500/40 hover:scale-105 active:scale-95 transition-all group"
+          className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-neutral-950/90 border border-white/25 text-white font-medium text-xs sm:text-sm backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.9)] hover:border-emerald-500/50 hover:scale-105 active:scale-95 transition-all group"
         >
           <div className="w-2 h-2 rounded-full bg-[#25D366] group-hover:scale-125 transition-transform"></div>
           <span>WhatsApp Consultation</span>
