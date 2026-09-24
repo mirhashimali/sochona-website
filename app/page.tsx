@@ -20,6 +20,7 @@ import {
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ScrollReveal from "@/components/ScrollReveal";
+import Hero from "@/components/Hero";
 
 export const metadata: Metadata = {
   title: "Sochona | The AI & Digital Growth Architecture",
@@ -33,71 +34,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  other: {
+    "facebook-domain-verification": "5kd314pd7tfx18wnapdsierf7nzj2k",
+  },
 };
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center w-full bg-transparent text-white selection:bg-[#007AFF] selection:text-white relative overflow-hidden pb-32">
       
-      {/* 1. HERO SECTION (Mobile-First Responsive Typography) */}
-      <ScrollReveal>
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-6 flex flex-col items-center text-center relative z-10">
-
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/50 border border-white/20 mb-5 sm:mb-6 backdrop-blur-xl shadow-lg">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#007AFF] animate-pulse"></span>
-            <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase text-white/90">
-              The AI & Digital Growth Architecture
-            </span>
-          </div>
-
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-white mb-4 sm:mb-5 drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] leading-[1.2] max-w-3xl text-balance">
-            Stop buying websites. <br />
-            <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-white/95 to-white/75 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-              Build sovereign revenue systems.
-            </span>
-          </h1>
-
-          <p className="max-w-xl text-sm sm:text-base text-white/85 font-normal leading-relaxed mb-6 sm:mb-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] text-balance px-2">
-            Your digital presence shouldn't just look aesthetic. We engineer end-to-end infrastructure that pulls high-intent demand, converts clicks with AI, and automates operations while you sleep.
-          </p>
-
-          {/* DUAL BUTTONS WITH TACTILE MOBILE TARGETS */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mb-6 sm:mb-8">
-            <a 
-              href="#audit-form" 
-              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm tracking-wide transition-all duration-300 hover:bg-neutral-100 hover:scale-105 active:scale-95 shadow-2xl shadow-white/20 flex items-center justify-center gap-2 group"
-            >
-              <span>Request Infrastructure Audit</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#007AFF] group-hover:translate-x-0.5 transition-transform" />
-            </a>
-
-            <Link 
-              href="/book" 
-              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-black/75 hover:bg-black/90 border border-white/25 text-white font-medium text-xs sm:text-sm tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-black/50 backdrop-blur-md flex items-center justify-center gap-2"
-            >
-              <Calendar className="w-3.5 h-3.5 text-[#007AFF]" />
-              <span>Book a Meeting</span>
-            </Link>
-          </div>
-
-          {/* MICRO-SIGNALS (Wrapped for Small Mobile Screens) */}
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] sm:text-xs text-white/75 font-normal tracking-wide drop-shadow px-2">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Sub-1s Edge Latency
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span> 24/7 AI Qualification
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Zero CMS Code Bloat
-            </span>
-          </div>
-
-        </section>
-      </ScrollReveal>
+      {/* 1. FRIEND'S NEW HERO SECTION (Spline Removed) */}
+      <div className="w-full relative z-10">
+        <Hero />
+      </div>
 
       {/* 2. RESEARCH BENCHMARKS (Clean 2x2 Grid Partitioning) */}
-      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 relative z-10">
+      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 relative z-10 mt-12">
         <ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-white/15 backdrop-blur-xl shadow-2xl">
             <div className="text-center p-2 border-r border-white/10">

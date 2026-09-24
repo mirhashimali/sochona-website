@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Script from "next/script";
 import LayoutWrapper from "@/components/LayoutWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,6 +17,9 @@ export const metadata: Metadata = {
   verification: {
     google: "_SoAwQZ6Dueex24M3RgrNsX-7SuPR-MC3YCZBfqcwyE",
   },
+  other: {
+    "facebook-domain-verification": "5kd314pd7tfx18wnapdsierf7nzj2k",
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +30,46 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-black text-[#F5F5F7] overflow-x-hidden min-h-screen flex flex-col`}>
+        
+        {/* --- GOOGLE ADS GLOBAL TAG --- */}
+        <Script 
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18472921321" 
+          strategy="afterInteractive" 
+        />
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18472921321');
+          `}
+        </Script>
+
+        {/* --- META PIXEL GLOBAL TAG --- */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '970789375281939');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+        <noscript>
+          <img 
+            height="1" 
+            width="1" 
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=970789375281939&ev=PageView&noscript=1"
+            alt="Meta Pixel"
+          />
+        </noscript>
+
         <LayoutWrapper>
           
           {/* Page Content */}

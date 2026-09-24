@@ -1,14 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Menu, X, ChevronDown, ArrowRight, Sparkles, Calendar } from "lucide-react";
-
-const Spline = dynamic(() => import("@splinetool/react-spline"), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 bg-black z-0"></div>,
-});
 
 export default function GlobalUI() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -209,20 +203,6 @@ export default function GlobalUI() {
           </div>
         )}
       </header>
-
-      {/* 2. BRIGHTENED 3D BACKGROUND */}
-      <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-auto bg-black">
-        <div
-          className="absolute top-0 left-0"
-          style={{ 
-            width: "calc(100vw + 200px)", 
-            height: "calc(100vh + 100px)",
-            filter: "brightness(1.4) contrast(1.08)"
-          }}
-        >
-          <Spline scene="https://prod.spline.design/19UJG8bsVhWJAmeG/scene.splinecode" />
-        </div>
-      </div>
     </>
   );
 }

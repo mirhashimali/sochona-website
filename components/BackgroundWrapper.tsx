@@ -1,20 +1,21 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Spline from "@splinetool/react-spline"; // Adjust this import if your component is named differently
+import { ReactNode } from "react";
 
-export default function BackgroundWrapper() {
+export default function BackgroundWrapper({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
-  // If we are on any /admin route, return null (hide the background)
-  if (pathname.startsWith("/admin")) {
-    return null;
-  }
-
-  // Otherwise, show your 3D background
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
-       <Spline scene="YOUR_SPLINE_SCENE_URL_HERE" />
+    <div className="relative min-h-screen bg-black text-white overflow-hidden flex flex-col">
+      {/* Subtle ambient background glow instead of heavy 3D Spline */}
+      <div 
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none -z-10 blur-[160px] opacity-25"
+        style={{
+          background: "radial-gradient(circle, rgba(0, 122, 255, 0.25) 0%, rgba(52, 211, 153, 0.1) 50%, transparent 75%)",
+        }}
+      />
+      {children}
     </div>
   );
 }

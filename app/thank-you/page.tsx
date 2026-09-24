@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import { CheckCircle2, ArrowRight, Calendar, ArrowLeft, ShieldCheck, Clock } from "lucide-react";
 import Link from "next/link";
@@ -9,21 +10,60 @@ export default function ThankYouPage() {
   // Fire conversion events when the user lands on this page
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // @ts-ignore Google Analytics / Google Ads Conversion Event
-      window.gtag?.("event", "conversion", {
-        send_to: "AW-CONVERSION_ID/LABEL", // Optional: Replace with your Google Ads Conversion Label when ready
+      // Google Ads Conversion Event
+      (window as any).gtag?.("event", "conversion", {
+        send_to: "AW-18472921321/AcxxCN2RjoQdEOnRyehE", 
         value: 1.0,
-        currency: "USD",
+        currency: "INR",
       });
 
-      // @ts-ignore Meta Pixel Lead Event
-      window.fbq?.("track", "Lead");
+      // Meta Pixel Lead Event
+      (window as any).fbq?.("track", "Lead");
     }
   }, []);
 
   return (
     <main className="relative min-h-screen bg-transparent overflow-hidden flex flex-col items-center justify-center text-white px-4 sm:px-6 pt-28 pb-20">
       
+      {/* --- GOOGLE ADS TRACKING SCRIPT --- */}
+      <Script 
+        src="https://www.googletagmanager.com/gtag/js?id=AW-18472921321" 
+        strategy="afterInteractive" 
+      />
+      <Script id="google-ads-tag" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-18472921321');
+        `}
+      </Script>
+
+      {/* --- META PIXEL TRACKING SCRIPT --- */}
+      <Script id="meta-pixel" strategy="afterInteractive">
+        {`
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '970789375281939');
+          fbq('track', 'PageView');
+        `}
+      </Script>
+      <noscript>
+        <img 
+          height="1" 
+          width="1" 
+          style={{ display: "none" }}
+          src="https://www.facebook.com/tr?id=970789375281939&ev=PageView&noscript=1"
+          alt="Meta Pixel"
+        />
+      </noscript>
+
       {/* Ambient Lighting */}
       <div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] pointer-events-none -z-10 blur-[150px]"
