@@ -1,145 +1,128 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ShieldCheck, FileText, Lock, Globe2 } from "lucide-react";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Sochona",
-  description: "Official privacy practices, data handling protocols, and compliance framework for Sochona Digital & AI Systems.",
-  robots: {
-    index: true,
-    follow: true,
-  },
+  title: "Privacy Policy & Data Standards | Sochona",
+  description: "Official privacy practices, data sovereignty protocols, and MSME compliance framework for Sochona Digital & AI Systems.",
+  robots: { index: true, follow: true },
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <main className="min-h-screen bg-transparent text-white selection:bg-[#007AFF] selection:text-white pt-32 pb-24 px-4 sm:px-6 relative overflow-hidden">
       
-      {/* Background Ambient Glow */}
-      <div 
-        className="absolute top-20 left-1/3 w-[600px] h-[500px] pointer-events-none -z-10 blur-[150px]"
-        style={{
-          background: "radial-gradient(circle, rgba(255, 140, 30, 0.12) 0%, rgba(0, 122, 255, 0.08) 50%, transparent 75%)",
-          mixBlendMode: "screen"
-        }}
-      />
+      {/* GLOBAL AMBIENT LAYER */}
+      <div className="fixed inset-0 pointer-events-none -z-10">
+        <div className="bg-grid absolute inset-0 opacity-80" />
+        <div className="absolute top-20 left-1/3 w-[600px] h-[500px] bg-gradient-to-r from-emerald-500/10 to-[#007AFF]/10 blur-[150px]" />
+      </div>
 
       <div className="max-w-4xl mx-auto w-full relative z-10">
         
-        {/* Back Link */}
-        <Link 
-          href="/" 
-          className="inline-flex items-center gap-2 text-xs text-white/50 hover:text-white transition-colors mb-8"
-        >
-          <ArrowLeft className="w-4 h-4" /> Return to Homepage
+        {/* BACK LINK */}
+        <Link href="/" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/50 hover:text-white transition-colors mb-10 group">
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Return to Infrastructure
         </Link>
 
-        {/* Page Header */}
-        <div className="mb-12 border-b border-white/10 pb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] font-mono tracking-widest uppercase text-white/70 mb-4">
-            <span>Official Legal Disclosure</span>
+        {/* HEADER */}
+        <ScrollReveal>
+          <div className="mb-12 border-b border-white/10 pb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-strong border border-white/10 text-[10px] font-mono tracking-widest uppercase text-white/70 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Official Legal Disclosure
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+              Privacy Policy & Data Standards
+            </h1>
+            <p className="text-xs text-white/50 font-mono tracking-wider">
+              LAST UPDATED: SEPTEMBER 2026 • EFFECTIVE IMMEDIATELY
+            </p>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-light tracking-tight text-white mb-3">
-            Privacy Policy & Data Standards
-          </h1>
-          <p className="text-xs text-white/50 font-mono">
-            Last Updated: September 2026 • Effective Immediately
-          </p>
-        </div>
+        </ScrollReveal>
 
-        {/* Official Entity Recognition Card */}
-        <div className="mb-12 p-6 rounded-2xl bg-neutral-950/80 border border-emerald-500/20 backdrop-blur-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="w-6 h-6 text-emerald-400 shrink-0" />
-            <div>
-              <h3 className="text-sm font-medium text-white">Registered Enterprise Entity</h3>
-              <p className="text-xs text-white/60 font-light">
-                Ministry of Micro, Small & Medium Enterprises (MSME), Government of India
-              </p>
+        {/* OFFICIAL ENTITY LEDGER */}
+        <ScrollReveal>
+          <div className="mb-14 p-6 sm:p-8 rounded-[2rem] glass-strong border border-emerald-500/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-[0_0_30px_rgba(16,185,129,0.05)]">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-6 h-6 text-emerald-400" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-white mb-1">Registered Enterprise Entity</h3>
+                <p className="text-xs text-white/60 font-medium">
+                  Ministry of Micro, Small & Medium Enterprises (MSME), Govt. of India
+                </p>
+              </div>
+            </div>
+            <div className="text-sm font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-xl">
+              UDYAM-BR-26-0248887
             </div>
           </div>
-          <div className="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-lg">
-            UDYAM-BR-26-0248887
-          </div>
-        </div>
+        </ScrollReveal>
 
-        {/* Policy Sections */}
-        <div className="space-y-10 text-xs sm:text-sm text-white/75 font-light leading-relaxed">
+        {/* POLICY SECTIONS */}
+        <div className="space-y-6 text-sm text-white/70 leading-relaxed font-medium">
           
-          <section className="space-y-3 bg-neutral-950/50 border border-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-xl">
-            <h2 className="text-base sm:text-lg font-medium text-white">1. Corporate Entity & Scope</h2>
-            <p>
-              This Privacy Policy applies to <strong className="text-white font-medium">Sochona Digital & AI Systems</strong> ("Sochona," "we," "our," or "us"), operating the primary web property <strong className="text-white font-medium">sochona.net</strong> and all associated digital infrastructure, APIs, and client portals.
-            </p>
-            <p>
-              We are committed to operating with complete institutional integrity, transparency, and compliance with the <em>Information Technology Act, 2000</em> (India), modern international data protection standards, and global privacy frameworks.
-            </p>
-          </section>
+          <ScrollReveal>
+            <section className="glass-strong border border-white/10 p-8 sm:p-10 rounded-[2rem]">
+              <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-3">
+                <span className="text-[#007AFF] font-mono text-sm">01.</span> Corporate Entity & Scope
+              </h2>
+              <p className="mb-3">
+                This Privacy Policy applies to <strong className="text-white">Sochona Digital & AI Systems</strong> ("Sochona," "we," "our," or "us"), operating the primary web property <strong className="text-white">sochona.net</strong> and all associated digital infrastructure, APIs, and client portals.
+              </p>
+              <p>
+                We are committed to operating with complete institutional integrity and compliance with the <em>Information Technology Act, 2000</em> (India) and global privacy frameworks.
+              </p>
+            </section>
+          </ScrollReveal>
 
-          <section className="space-y-3 bg-neutral-950/50 border border-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-xl">
-            <h2 className="text-base sm:text-lg font-medium text-white">2. Proprietary Data Sovereignty & AI Ethics</h2>
-            <p>
-              As an engineering firm specializing in artificial intelligence and automation, we maintain strict data isolation boundaries:
-            </p>
-            <ul className="list-disc list-inside space-y-1.5 pl-2 text-white/70">
-              <li><strong className="text-white">Zero Public Model Training:</strong> We do <em>not</em> use your proprietary business records, customer transcripts, or private lead data to train public or shared AI models.</li>
-              <li><strong className="text-white">Client Data Siloing:</strong> When custom automated workflows or mini-CRMs are deployed for your organization, your databases remain completely sovereign and under your exclusive organizational control.</li>
-              <li><strong className="text-white">No Data Commercialization:</strong> We do not sell, rent, or trade client or prospect personal information to data brokers under any circumstances.</li>
-            </ul>
-          </section>
+          <ScrollReveal>
+            <section className="glass-strong border border-white/10 p-8 sm:p-10 rounded-[2rem]">
+              <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-3">
+                <span className="text-[#007AFF] font-mono text-sm">02.</span> Proprietary Data Sovereignty
+              </h2>
+              <p className="mb-4">As an engineering firm specializing in AI and automation, we maintain strict data isolation boundaries:</p>
+              <ul className="list-none space-y-3">
+                <li className="flex gap-3"><span className="text-[#007AFF]">•</span> <div><strong className="text-white">Zero Public Model Training:</strong> We do not use your proprietary business records, transcripts, or private lead data to train public AI models.</div></li>
+                <li className="flex gap-3"><span className="text-[#007AFF]">•</span> <div><strong className="text-white">Client Data Siloing:</strong> When custom automated workflows or mini-CRMs are deployed, your databases remain sovereign and under your exclusive control.</div></li>
+                <li className="flex gap-3"><span className="text-[#007AFF]">•</span> <div><strong className="text-white">No Data Commercialization:</strong> We do not sell, rent, or trade client information to data brokers under any circumstances.</div></li>
+              </ul>
+            </section>
+          </ScrollReveal>
 
-          <section className="space-y-3 bg-neutral-950/50 border border-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-xl">
-            <h2 className="text-base sm:text-lg font-medium text-white">3. Information We Collect</h2>
-            <p>We collect information across three operational touchpoints:</p>
-            <ul className="list-disc list-inside space-y-1.5 pl-2 text-white/70">
-              <li><strong className="text-white">Voluntary Inbound Submissions:</strong> Information you provide when requesting an infrastructure audit, booking a consultation, or submitting a contact form (including your name, business email address, phone/WhatsApp number, current website URL, and ad spend metrics).</li>
-              <li><strong className="text-white">Automated Technical Telemetry:</strong> Device identifiers, browser type, geographic node, and Core Web Vitals latency telemetry collected via server logs to ensure edge delivery performance.</li>
-              <li><strong className="text-white">Payment & Invoicing Information:</strong> Invoices generated for agreed services record standard billing details and tax identification numbers. Digital payment processing is conducted via secure third-party banking gateways (e.g., direct bank transfer, UPI, or PayPal). We do not store sensitive payment card credentials on our servers.</li>
-            </ul>
-          </section>
+          <ScrollReveal>
+            <section className="glass-strong border border-white/10 p-8 sm:p-10 rounded-[2rem]">
+              <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-3">
+                <span className="text-[#007AFF] font-mono text-sm">03.</span> Tracking & Attribution
+              </h2>
+              <p className="mb-4">To measure marketing effectiveness and eliminate ad spend waste, we deploy vetted telemetry tools:</p>
+              <ul className="list-none space-y-3 mb-6">
+                <li className="flex gap-3"><span className="text-[#007AFF]">•</span> <div><strong className="text-white">Google Analytics (GA4):</strong> Aggregated behavioral telemetry to evaluate page performance.</div></li>
+                <li className="flex gap-3"><span className="text-[#007AFF]">•</span> <div><strong className="text-white">Meta Pixel & CAPI:</strong> Server-level event signals deployed to measure cross-platform ad relevance and reduce CAC.</div></li>
+              </ul>
+              <p className="text-xs text-white/50 bg-white/[0.03] p-4 rounded-xl border border-white/5">
+                You can manage your ad personalization directly through <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-[#007AFF]">Google Ad Settings</a> and <a href="https://www.facebook.com/adpreferences" target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-[#007AFF]">Facebook Ad Preferences</a>.
+              </p>
+            </section>
+          </ScrollReveal>
 
-          <section className="space-y-3 bg-neutral-950/50 border border-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-xl">
-            <h2 className="text-base sm:text-lg font-medium text-white">4. Tracking, Attribution & Cookie Technologies</h2>
-            <p>
-              To measure marketing effectiveness, eliminate ad spend waste, and diagnose user experience friction, we deploy vetted telemetry tools:
-            </p>
-            <ul className="list-disc list-inside space-y-1.5 pl-2 text-white/70">
-              <li><strong className="text-white">Google Analytics (GA4):</strong> Aggregated behavioral telemetry to evaluate page performance and session engagement.</li>
-              <li><strong className="text-white">Google Ads Conversion Tracking:</strong> Attribution tagging that measures audit requests and calendar appointments to optimize search campaign efficiency.</li>
-              <li><strong className="text-white">Meta Pixel & Conversions API (CAPI):</strong> Server-level event signals deployed to measure cross-platform ad relevance and reduce customer acquisition costs.</li>
-            </ul>
-            <p className="pt-1">
-              You can disable cookie tracking at any time via your browser settings or manage your ad personalization directly through{" "}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-[#007AFF] underline">Google Ad Settings</a> and{" "}
-              <a href="https://www.facebook.com/adpreferences" target="_blank" rel="noopener noreferrer" className="text-[#007AFF] underline">Facebook Ad Preferences</a>.
-            </p>
-          </section>
-
-          <section className="space-y-3 bg-neutral-950/50 border border-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-xl">
-            <h2 className="text-base sm:text-lg font-medium text-white">5. Third-Party Service Providers</h2>
-            <p>
-              We partner strictly with enterprise-grade infrastructure providers that uphold industry-standard security and encryption protocols:
-            </p>
-            <ul className="list-disc list-inside space-y-1.5 pl-2 text-white/70">
-              <li><strong className="text-white">Edge Hosting & Compute:</strong> Vercel Inc. and global content delivery networks.</li>
-              <li><strong className="text-white">Calendar Scheduling:</strong> Google Meet and Google Workspace appointment scheduling infrastructure.</li>
-              <li><strong className="text-white">Content Infrastructure:</strong> Sanity.io cloud datastores.</li>
-            </ul>
-          </section>
-
-          <section className="space-y-3 bg-neutral-950/50 border border-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-xl">
-            <h2 className="text-base sm:text-lg font-medium text-white">6. Your Rights & Data Inquiries</h2>
-            <p>
-              Regardless of your geographic location, you retain the right to request an audit of the personal information we maintain regarding your business, request corrections, or request complete removal of your records from our systems.
-            </p>
-            <p>
-              To submit a formal data inquiry, contact our compliance desk directly at{" "}
-              <a href="mailto:connect@sochona.net" className="text-[#007AFF] underline">connect@sochona.net</a>.
-            </p>
-          </section>
+          <ScrollReveal>
+            <section className="glass-strong border border-white/10 p-8 sm:p-10 rounded-[2rem]">
+              <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-3">
+                <span className="text-[#007AFF] font-mono text-sm">04.</span> Your Rights & Inquiries
+              </h2>
+              <p className="mb-4">
+                Regardless of your geographic location, you retain the right to request an audit of the personal information we maintain, request corrections, or request complete removal of your records.
+              </p>
+              <p>
+                To submit a formal data inquiry, contact our compliance desk directly at <a href="mailto:connect@sochona.net" className="text-white font-bold underline hover:text-[#007AFF] transition-colors">connect@sochona.net</a>.
+              </p>
+            </section>
+          </ScrollReveal>
 
         </div>
-
       </div>
     </main>
   );

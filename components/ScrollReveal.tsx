@@ -3,19 +3,28 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
-export default function ScrollReveal({ children }: { children: ReactNode }) {
+export default function ScrollReveal({ 
+  children, 
+  className = "" 
+}: { 
+  children: ReactNode; 
+  className?: string;
+}) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ 
-        once: true, // Animates in once, then stays visible — no more repeat triggering
-        margin: "-50px" // Triggers slightly after it enters the screen
+        once: true,
+        margin: "0px 0px 100px 0px", // Triggers early on mobile
+        amount: "some"
       }}
       transition={{ 
-        duration: 0.8, 
-        ease: [0.16, 1, 0.3, 1] // The signature Apple-style easing curve
+        duration: 0.6, 
+        ease: [0.16, 1, 0.3, 1] 
       }}
+      className={`w-full ${className}`}
+      style={{ opacity: 1 }} // Fallback safety
     >
       {children}
     </motion.div>

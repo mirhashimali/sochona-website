@@ -1,25 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { 
-  Calendar,
-  MessageCircle, 
-  ShieldCheck, 
-  Zap, 
-  TrendingUp, 
-  CheckCircle2, 
-  ArrowRight, 
-  XCircle, 
-  Building2, 
-  Stethoscope, 
-  GraduationCap, 
-  ShoppingBag, 
-  Factory,
-  Clock,
-  Sparkles,
-  ChevronRight
+  Calendar, MessageCircle, Zap, ArrowRight, Building2, Stethoscope, 
+  GraduationCap, ShoppingBag, Factory, Sparkles, Check, X, ArrowDownRight, 
+  ArrowUpRight, Wallet, CheckCircle2
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import LeadForm from "@/components/LeadForm";
+import SpeedRace from "@/components/SpeedRace";
 
 export const metadata: Metadata = {
   title: "Sochona India | Sovereign Digital Infrastructure",
@@ -40,15 +28,82 @@ export const metadata: Metadata = {
   },
 };
 
+const levers = [
+  { 
+    icon: ArrowDownRight, 
+    t: "Zero Ad Paisa Waste", 
+    b: "Sirf high-intent Google search buyers ko target karte hain. Fake clicks aur 'galti se dab gaya' callers band. Same budget me double sales inquiries.", 
+    c: "text-blue-400", 
+    ring: "border-blue-500/30 bg-blue-500/10" 
+  },
+  { 
+    icon: ArrowUpRight, 
+    t: "Instant WhatsApp Booking", 
+    b: "Customer ke request karte hi 24/7 automated agent turant catalog, pricing aur meeting calendar bhej deta hai. Grahak thanda hone se pehle deal lock.", 
+    c: "text-emerald-400", 
+    ring: "border-emerald-500/30 bg-emerald-500/10" 
+  },
+  { 
+    icon: Wallet, 
+    t: "Har Mahine Ka SaaS Bill Zero", 
+    b: "Aapka apna custom lead dashboard. Kisi bhi third-party CRM ko har mahine dollars me license fees dene ki zaroorat nahi. 100% proprietary code ownership.", 
+    c: "text-amber-400", 
+    ring: "border-amber-500/30 bg-amber-500/10" 
+  },
+];
+
+const stats = [
+  { v: "3.4×", k: "Genuine Buyer Inquiries", c: "text-gradient-growth" },
+  { v: "41.8%", k: "Customer Acquisition Cost Kam", c: "text-gradient-blue" },
+  { v: "+210%", k: "Confirmed Client Meetings", c: "text-gradient-growth" },
+  { v: "16 hrs", k: "Admin Ka Manual Kaam Bachaya", c: "text-gradient-blue" },
+];
+
+const cases = [
+  { 
+    sector: "B2B Manufacturing", 
+    t: "WordPress Se Sub-Second Next.js + RFQ Funnel", 
+    b: "Lagging 7-second site ko edge code par badla. Bounce rate 68% ghata aur direct wholesale bulk orders WhatsApp par aane lage.", 
+    kpi: "+210%", 
+    kl: "Monthly Verified Inquiries", 
+    c: "text-emerald-400" 
+  },
+  { 
+    sector: "D2C & Retail Brands", 
+    t: "High-Speed Mobile Funnel + Server-Side Tracking", 
+    b: "Jio aur Airtel 4G par instant catalog delivery. Cart abandonment 40% kam aur direct UPI checkout rate double.", 
+    kpi: "−41.8%", 
+    kl: "Cost Per Acquisition (CAC)", 
+    c: "text-blue-400" 
+  },
+  { 
+    sector: "Real Estate & Clinics", 
+    t: "Custom Private CRM + WhatsApp Follow-Up", 
+    b: "Excel sheets ki tension khatam. 1-click dashboard jahan har customer ka status, call recording aur auto-reply sync hota hai.", 
+    kpi: "16 hrs/wk", 
+    kl: "Manual Busywork Removed", 
+    c: "text-amber-400" 
+  },
+];
+
+const comparisonRows = [
+  ["Mobile 4G/5G Speed", "6–8s on slow shared WordPress", "< 0.8s on Edge Next.js"],
+  ["After-Hours Leads", "Excel sheet me padi rehti hain", "WhatsApp bot 10s me catalog bhejta hai"],
+  ["Lead Quality", "80% job seeker ya fake number", "OTP / Intent verified serious buyers"],
+  ["Monthly CRM Cost", "₹10,000–₹25,000 har mahine SaaS rent", "₹0. One-time build, 100% aapka"],
+  ["Developer Support", "Payment lene ke baad call nahi uthana", "100% GitHub code & full admin control"],
+  ["Business Scaling", "Zyada sales staff hire karo", "Automated system se 10x volume sambhalo"],
+];
+
 export default function IndiaGrowthPage() {
   const whatsappNumber = "919835182801";
-  const whatsappMessage = encodeURIComponent("Namaste Sochona! I run a business in India and want to audit my growth infrastructure and stop junk leads.");
+  const whatsappMessage = encodeURIComponent("Namaste Sochona! I run a business in India and want to audit my website and get verified buyer leads on WhatsApp.");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
-    <main className="flex flex-col items-center w-full bg-transparent text-white selection:bg-[#007AFF] selection:text-white relative overflow-hidden pb-44">
+    <main className="flex flex-col items-center w-full bg-transparent text-white selection:bg-[#007AFF] selection:text-white relative overflow-x-clip pb-40">
 
-      {/* Google Schema.org Structured Data */}
+      {/* Google Schema.org Structured Data (RESTORED) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -69,354 +124,271 @@ export default function IndiaGrowthPage() {
         }}
       />
 
-      {/* 1. HERO SECTION (Mobile-First Responsive Typography) */}
-      <ScrollReveal>
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-8 flex flex-col items-center text-center relative z-10">
+      {/* GLOBAL AMBIENT LAYER */}
+      <div className="fixed inset-0 pointer-events-none -z-10">
+        <div className="bg-grid absolute inset-0 opacity-80" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[550px] bg-gradient-to-b from-[#007AFF]/20 via-[#25D366]/10 to-transparent blur-[140px] animate-pulse-glow" />
+      </div>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-950/80 border border-white/20 mb-5 sm:mb-6 backdrop-blur-xl shadow-lg">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#007AFF] animate-pulse"></span>
-            <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase text-white/90">
-              Bharat Architecture Edition
+      {/* 1. HERO SECTION */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-12 flex flex-col items-center text-center relative z-10">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-blue-500/30 mb-6 backdrop-blur-xl shadow-[0_0_25px_rgba(0,122,255,0.2)]">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-blue-300">
+            Bharat Business Architecture Edition
+          </span>
+        </div>
+
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-5 leading-[1.15] max-w-3xl text-balance">
+          Junk Leads Band. <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-teal-300">
+            Verified Buyers Seedha Aapke WhatsApp Par.
+          </span>
+        </h1>
+
+        <p className="max-w-2xl text-sm sm:text-base text-white/80 leading-relaxed mb-8 px-2">
+          No slow WordPress templates. No monthly software ki jhanjhat. Hum banate hain sub-second Next.js web systems jo serious paying customers seedha aapke <span className="text-[#25D366] font-bold">WhatsApp</span> aur private CRM dashboard par deliver karte hain.
+        </p>
+
+        {/* Luminous Light-Up Actions */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mb-12">
+          <a 
+            href={whatsappUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto relative group inline-flex items-center justify-center px-8 py-4 rounded-full text-black font-extrabold text-sm overflow-hidden transition-all duration-300 active:scale-95 ring-glow-emerald bg-[#25D366] hover:bg-[#20ba59]"
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <MessageCircle className="w-5 h-5 text-black" />
+              <span>Talk on WhatsApp Directly</span>
+              <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
             </span>
-          </div>
+            <span className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+          </a>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-white mb-4 sm:mb-5 drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-[1.2] max-w-3xl text-balance">
-            Engineered for Revenue. <br />
-            <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-white/95 to-white/75 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-              Junk Leads Band. Sovereign Systems Shuru.
-            </span>
-          </h1>
+          <a 
+            href="#audit-form" 
+            className="w-full sm:w-auto px-7 py-4 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/20 text-white font-bold text-sm transition-all hover:scale-105 active:scale-95 shadow-lg backdrop-blur-md flex items-center justify-center gap-2"
+          >
+            <Calendar className="w-4 h-4 text-[#007AFF]" />
+            <span>Free Website Audit</span>
+          </a>
+        </div>
 
-          <p className="max-w-xl text-sm sm:text-base text-white/85 font-normal leading-relaxed mb-6 sm:mb-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] text-balance px-2">
-            No broken WordPress templates. No monthly software ki jhanjhat. Hum banate hain sub-second digital systems jo verified customer inquiries seedha aapke <span className="text-[#007AFF] font-medium">WhatsApp</span> aur private CRM dashboard par deliver karte hain.
-          </p>
-
-          {/* DUAL BUTTONS */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mb-8">
-            <a 
-              href="#audit-form" 
-              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm tracking-wide transition-all duration-300 hover:bg-neutral-100 hover:scale-105 active:scale-95 shadow-2xl shadow-white/20 flex items-center justify-center gap-2 group"
-            >
-              <span>Get Free Infrastructure Audit</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#007AFF] group-hover:translate-x-0.5 transition-transform" />
-            </a>
-
-            <Link 
-              href="/book" 
-              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-neutral-950/85 hover:bg-neutral-900 border border-white/25 text-white font-medium text-xs sm:text-sm tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-black/50 backdrop-blur-md flex items-center justify-center gap-2"
-            >
-              <Calendar className="w-3.5 h-3.5 text-[#007AFF]" />
-              <span>Book a Meeting</span>
-            </Link>
-          </div>
-
-          {/* ⚡ LIVING ARTIFACT: OPAQUE OBSIDIAN HUD (No Yellow Bleed • Readable Mobile Layout) */}
-          <div className="w-full max-w-xl p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-white/25 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.8)] text-left relative overflow-hidden group">
-            
-            {/* HUD Header */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3 text-xs font-mono">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span className="text-white font-bold uppercase tracking-wider text-[11px] sm:text-xs">SOCHONA ENGINE // LIVE HUD</span>
-              </div>
-              <span className="text-blue-400 bg-blue-500/15 border border-blue-500/30 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold">
-                MUMBAI (0.38s)
+        {/* ⚡ LIVE ENGINE HUD (Restored purely as UI layout) */}
+        <div className="w-full max-w-xl p-4 sm:p-5 rounded-2xl sm:rounded-3xl glass-strong text-left relative overflow-hidden border border-white/20 shadow-2xl">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3 text-xs font-mono">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span className="text-white font-bold uppercase tracking-wider text-[11px] sm:text-xs">
+                SOCHONA PIPELINE // LIVE INQUIRY
               </span>
             </div>
-
-            {/* Event Rows (Stacked on Mobile, Wide on Desktop) */}
-            <div className="space-y-2.5 font-mono text-xs">
-              
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 sm:p-1.5 rounded-xl bg-white/[0.04]">
-                <div className="flex items-center gap-2">
-                  <span className="text-white/40 text-[11px]">[00:01.2s]</span>
-                  <span className="text-white font-medium text-xs sm:text-sm">Google Search Intent</span>
-                </div>
-                <div className="flex items-center justify-between sm:justify-end gap-2">
-                  <span className="text-blue-400 text-xs font-semibold">"B2B Exporter"</span>
-                  <span className="text-emerald-400 font-bold text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30">VERIFIED</span>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 sm:p-1.5 rounded-xl bg-white/[0.04]">
-                <div className="flex items-center gap-2">
-                  <span className="text-white/40 text-[11px]">[00:01.8s]</span>
-                  <span className="text-white font-medium text-xs sm:text-sm">WhatsApp Bot Dispatched</span>
-                </div>
-                <div className="flex items-center justify-between sm:justify-end gap-2">
-                  <span className="text-white/70 text-xs">Hindi / Eng</span>
-                  <span className="text-teal-400 font-bold text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-teal-500/15 border border-teal-500/30">1.2s</span>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 sm:p-1.5 rounded-xl bg-white/[0.04]">
-                <div className="flex items-center gap-2">
-                  <span className="text-white/40 text-[11px]">[00:02.4s]</span>
-                  <span className="text-white font-medium text-xs sm:text-sm">Portal Synchronization</span>
-                </div>
-                <div className="flex items-center justify-between sm:justify-end gap-2">
-                  <span className="text-white/70 text-xs">Zero SaaS Rent</span>
-                  <span className="text-purple-400 font-bold text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-purple-500/15 border border-purple-500/30">ROUTED</span>
-                </div>
-              </div>
-
-            </div>
-
-            {/* HUD Footer Readout */}
-            <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-white/60 uppercase tracking-wider">
-              <span>Latency: 38ms</span>
-              <span>•</span>
-              <span>LCP: 0.6s (Pass)</span>
-              <span>•</span>
-              <span className="text-emerald-400 font-bold">100% Intent</span>
-            </div>
-
+            <span className="text-cyan-400 bg-cyan-500/15 border border-cyan-500/30 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold">
+              MUMBAI EDGE (38ms)
+            </span>
           </div>
 
-        </section>
-      </ScrollReveal>
+          <div className="space-y-2.5 font-mono text-xs">
+            <div className="flex items-center justify-between p-2 rounded-xl bg-white/[0.04]">
+              <div className="flex items-center gap-2">
+                <span className="text-white/40 text-[11px]">[00:01.2s]</span>
+                <span className="text-white font-medium">Google Search Intent</span>
+              </div>
+              <span className="text-emerald-400 font-bold text-[10px] px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30">VERIFIED</span>
+            </div>
+            <div className="flex items-center justify-between p-2 rounded-xl bg-white/[0.04]">
+              <div className="flex items-center gap-2">
+                <span className="text-white/40 text-[11px]">[00:01.8s]</span>
+                <span className="text-white font-medium">WhatsApp Bot Dispatched</span>
+              </div>
+              <span className="text-teal-300 font-bold text-[10px] px-2 py-0.5 rounded bg-teal-500/15 border border-teal-500/30">1.2s</span>
+            </div>
+            <div className="flex items-center justify-between p-2 rounded-xl bg-white/[0.04]">
+              <div className="flex items-center gap-2">
+                <span className="text-white/40 text-[11px]">[00:02.4s]</span>
+                <span className="text-white font-medium">Lead Portal Sync</span>
+              </div>
+              <span className="text-purple-300 font-bold text-[10px] px-2 py-0.5 rounded bg-purple-500/15 border border-purple-500/30">ZERO SAAS</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* 2. RESEARCH BENCHMARKS */}
       <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 relative z-10">
         <ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-white/15 backdrop-blur-xl shadow-2xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl sm:rounded-3xl glass-strong border border-white/15">
             <div className="text-center p-2 border-r border-white/10">
-              <span className="text-2xl sm:text-3xl font-light text-blue-400 tracking-tight">9x</span>
-              <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase tracking-wider font-medium leading-tight">
-                Conversion Odds &lt; 5min (MIT)
-              </p>
+              <span className="text-2xl sm:text-3xl font-extrabold text-blue-400">9×</span>
+              <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase font-bold">Fast Reply = 9x Deals</p>
             </div>
             <div className="text-center p-2 md:border-r border-white/10">
-              <span className="text-2xl sm:text-3xl font-light text-teal-300 tracking-tight">&lt; 0.8s</span>
-              <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase tracking-wider font-medium leading-tight">
-                Edge Mobile Latency (Google)
-              </p>
+              <span className="text-2xl sm:text-3xl font-extrabold text-teal-300">&lt; 0.8s</span>
+              <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase font-bold">Jio & Airtel 4G Speed</p>
             </div>
             <div className="text-center p-2 border-r border-white/10">
-              <span className="text-2xl sm:text-3xl font-light text-emerald-400 tracking-tight">98%</span>
-              <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase tracking-wider font-medium leading-tight">
-                WhatsApp Delivery Open Rate
-              </p>
+              <span className="text-2xl sm:text-3xl font-extrabold text-emerald-400">98%</span>
+              <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase font-bold">WhatsApp Open Rate</p>
             </div>
             <div className="text-center p-2">
-              <span className="text-2xl sm:text-3xl font-light text-amber-300 tracking-tight">100%</span>
-              <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase tracking-wider font-medium leading-tight">
-                Proprietary Code Ownership
-              </p>
+              <span className="text-2xl sm:text-3xl font-extrabold text-amber-300">100%</span>
+              <p className="text-[11px] sm:text-xs text-white/70 mt-1 uppercase font-bold">Code Ownership</p>
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* 3. GROUND REALITY (Solid Contrast Cards) */}
-      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative z-10 pointer-events-auto">
+      {/* 3. INTERACTIVE SPEED RACE */}
+      <SpeedRace lang="in" />
+
+      {/* 4. GROUND REALITY MATRIX (Restored) */}
+      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-16 relative z-10 border-t border-white/10">
         <ScrollReveal>
-          <div className="text-center mb-8 sm:mb-12">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#007AFF]">The Indian Business Reality</span>
-            <h2 className="text-2xl sm:text-4xl font-light text-white mt-2">Aapka Digital Paisa Kahan Barbaad Ho Raha Hai?</h2>
+          <div className="text-center mb-10">
+            <span className="eyebrow text-[#007AFF]">The Honest Truth</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-2">
+              Normal Agencies vs The Sochona Engine
+            </h2>
+            <p className="text-white/70 text-sm mt-2">Kyun purane retainers se aapka digital paisa barbaad ho raha hai:</p>
           </div>
+        </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-red-500/20 backdrop-blur-xl shadow-xl">
-              <span className="text-[10px] sm:text-xs font-mono text-red-400/90 uppercase tracking-widest font-semibold">Purana Tariqa</span>
-              <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-4 sm:mb-6">Freelancers & Typical Agency Retainers</h3>
-              <ul className="space-y-3.5 sm:space-y-4 text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
-                <li className="flex items-start gap-3">
-                  <span className="text-red-400 font-bold">—</span>
-                  <span><strong>80% Junk Leads:</strong> Ads chalaye par callers bolte hain <em>"Maine galti se click kiya"</em> ya students job mangte hain.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-400 font-bold">—</span>
-                  <span><strong>Slow WordPress Themes:</strong> Mobile 4G par 6-8 seconds leti hain load hone me. Grahak pehle hi back dabakar chala jata hai.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-400 font-bold">—</span>
-                  <span><strong>Developer Gayab:</strong> Advance lene ke 1 mahine baad freelancer call nahi uthata aur bugs theek nahi karta.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-400 font-bold">—</span>
-                  <span><strong>Follow-Up Ka Loss:</strong> Leads Excel sheet me padi rehti hain aur ghanton tak koi WhatsApp message nahi jata.</span>
-                </li>
-              </ul>
+        <ScrollReveal>
+          <div className="glass-strong overflow-x-auto rounded-3xl border border-white/15 shadow-2xl">
+            <div className="grid grid-cols-[1.2fr_1fr_1fr] min-w-[600px] border-b border-white/10 bg-white/[0.03] px-5 py-3.5 text-xs font-semibold uppercase tracking-wider text-white/50">
+              <span>Metric</span>
+              <span className="text-ember font-bold">Purana Freelancer / Agency</span>
+              <span className="text-emerald-400 font-bold">The Sochona System</span>
             </div>
-
-            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-neutral-950/90 border border-blue-500/30 backdrop-blur-xl shadow-xl relative">
-              <div className="absolute top-4 right-4 text-[10px] font-mono text-[#007AFF] uppercase tracking-widest font-bold">
-                Production Standard
+            {comparisonRows.map(([k, a, b]) => (
+              <div key={k} className="grid grid-cols-[1.2fr_1fr_1fr] min-w-[600px] items-center gap-3 border-b border-white/10 px-5 py-4 text-xs sm:text-sm last:border-b-0">
+                <span className="font-semibold text-white">{k}</span>
+                <span className="flex items-start gap-1.5 text-white/60">
+                  <X className="mt-0.5 h-3.5 w-3.5 shrink-0 text-ember" /><span>{a}</span>
+                </span>
+                <span className="flex items-start gap-1.5 text-white/95 font-medium">
+                  <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" /><span>{b}</span>
+                </span>
               </div>
-              <span className="text-[10px] sm:text-xs font-mono text-blue-400/90 uppercase tracking-widest font-semibold">The Sochona System</span>
-              <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-4 sm:mb-6">Unified Revenue Infrastructure</h3>
-              <ul className="space-y-3.5 sm:space-y-4 text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
-                <li className="flex items-start gap-3">
-                  <span className="text-[#007AFF] font-bold">✓</span>
-                  <span><strong>Verified Inquiries:</strong> Strict intent-based funnels jo sirf serious buyers ko capture karte hain.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#007AFF] font-bold">✓</span>
-                  <span><strong>Sub-Second Mobile Speed:</strong> Next.js code jo Jio aur Airtel 4G/5G par bina kisi delay ke instant khulta hai.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#007AFF] font-bold">✓</span>
-                  <span><strong>Instant WhatsApp Automation:</strong> Grahak ke message karte hi instant catalog, pricing aur meeting link auto-send hoti hai.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#007AFF] font-bold">✓</span>
-                  <span><strong>Zero Monthly Software Bills:</strong> Ek baar custom lead portal ban gaya, har mahine mehnge SaaS ka kharcha band.</span>
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </ScrollReveal>
       </section>
 
-      {/* 4. 4 PILLARS */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 pointer-events-auto w-full relative z-10">
-        <ScrollReveal>
-          <div className="text-center mb-8 sm:mb-12">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#007AFF]">The Four Pillars</span>
-            <h2 className="text-2xl sm:text-4xl font-light text-white mt-2 mb-2 sm:mb-3">Hum Aapke Business Ke Liye Kya Karte Hain?</h2>
-            <p className="text-white/65 text-xs sm:text-sm font-normal max-w-xl mx-auto">
-              Click on any discipline to inspect implementation blueprints and technical benchmarks.
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <div className="flex md:grid md:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto md:overflow-visible pt-4 sm:pt-8 pb-8 px-1 snap-x snap-mandatory scrollbar-none">
-          
-          <Link href="/in/zero-ad-waste" className="block min-w-[280px] sm:min-w-[320px] md:min-w-0 snap-center">
-            <div className="h-full bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-blue-500/50 hover:shadow-[0_15px_35px_rgba(0,122,255,0.15)] group cursor-pointer">
-              <div>
-                <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-500/25 flex items-center justify-center mb-5 text-blue-400 group-hover:scale-110 group-hover:bg-blue-500/20 transition-all">
-                  <TrendingUp className="w-5 h-5" />
+      {/* 5. 3 MSME REVENUE LEVERS */}
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 relative z-10 border-t border-white/10">
+        <div className="grid gap-6 md:grid-cols-3">
+          {levers.map((l) => {
+            const Icon = l.icon;
+            return (
+              <ScrollReveal key={l.t}>
+                <div className="glass h-full rounded-3xl p-7 flex flex-col justify-between hover:border-white/30 transition-all">
+                  <div>
+                    <span className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl border ${l.ring} ${l.c} mb-5`}>
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <h3 className="text-xl font-bold text-white mb-2">{l.t}</h3>
+                    <p className="text-sm leading-relaxed text-white/70">{l.b}</p>
+                  </div>
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-blue-400 font-semibold">Phase 01</span>
-                <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-2 group-hover:text-blue-300 transition-colors">1. High-Intent Ads</h3>
-                <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed">
-                  Google Search aur Meta ads jo exact unhi verified logon ko target karte hain jo aaj aapki service khareedne ke liye search kar rahe hain.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-blue-400 font-medium group-hover:translate-x-0.5 transition-all">
-                <span>Zero Budget Waste</span>
-                <ChevronRight className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-              </div>
-            </div>
-          </Link>
+              </ScrollReveal>
+            );
+          })}
+        </div>
 
-          <Link href="/in/speed-infrastructure" className="block min-w-[280px] sm:min-w-[320px] md:min-w-0 snap-center">
-            <div className="h-full bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-teal-400/50 hover:shadow-[0_15px_35px_rgba(20,184,166,0.15)] group cursor-pointer">
-              <div>
-                <div className="w-11 h-11 rounded-2xl bg-teal-500/10 border border-teal-500/25 flex items-center justify-center mb-5 text-teal-400 group-hover:scale-110 group-hover:bg-teal-500/20 transition-all">
-                  <Zap className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-teal-400 font-semibold">Phase 02</span>
-                <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-2 group-hover:text-teal-300 transition-colors">2. Blazing Speed Web</h3>
-                <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed">
-                  React aur Next.js par custom code. Zero bloated plugins, 100% security, aur Jio/Airtel 4G/5G par sub-second instant mobile loading.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-teal-400 font-medium group-hover:translate-x-0.5 transition-all">
-                <span>Sub-1s Latency</span>
-                <ChevronRight className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-              </div>
+        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {stats.map((s) => (
+            <div key={s.k} className="glass-strong p-6 sm:p-7 rounded-2xl text-center border border-white/10">
+              <div className={`text-3xl sm:text-4xl font-extrabold ${s.c}`}>{s.v}</div>
+              <div className="mt-2 text-xs sm:text-sm text-white/70 font-bold">{s.k}</div>
             </div>
-          </Link>
-
-          <Link href="/in/whatsapp-automation" className="block min-w-[280px] sm:min-w-[320px] md:min-w-0 snap-center">
-            <div className="h-full bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-emerald-400/50 hover:shadow-[0_15px_35px_rgba(16,185,129,0.15)] group cursor-pointer">
-              <div>
-                <div className="w-11 h-11 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center mb-5 text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
-                  <MessageCircle className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">Phase 03</span>
-                <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-2 group-hover:text-emerald-300 transition-colors">3. WhatsApp Automation</h3>
-                <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed">
-                  24/7 automated agent jo client ke sawalon ka jawab deta hai, product catalog bhejta hai, aur direct calendar me meeting schedule karta hai.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-emerald-400 font-medium group-hover:translate-x-0.5 transition-all">
-                <span>Instant 24/7 Response</span>
-                <ChevronRight className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-              </div>
-            </div>
-          </Link>
-
-          <Link href="/in/custom-crm" className="block min-w-[280px] sm:min-w-[320px] md:min-w-0 snap-center">
-            <div className="h-full bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-2.5 hover:border-amber-400/50 hover:shadow-[0_15px_35px_rgba(245,158,11,0.15)] group cursor-pointer">
-              <div>
-                <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center mb-5 text-amber-400 group-hover:scale-110 group-hover:bg-amber-500/20 transition-all">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-semibold">Phase 04</span>
-                <h3 className="text-base sm:text-lg font-medium text-white mt-1 mb-2 group-hover:text-amber-300 transition-colors">4. Custom Lead Portal</h3>
-                <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed">
-                  Aapka apna proprietary dashboard jahan saari leads, call recordings aur follow-ups 1 click par accessible hoti hain without SaaS fees.
-                </p>
-              </div>
-              <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-amber-400 font-medium group-hover:translate-x-0.5 transition-all">
-                <span>No Per-User SaaS Fees</span>
-                <ChevronRight className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-              </div>
-            </div>
-          </Link>
-
+          ))}
         </div>
       </section>
 
-      {/* 5. INDUSTRY VERTICALS */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 pointer-events-auto w-full relative z-10">
+      {/* 6. VERIFIED MSME CASE STUDIES */}
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 relative z-10 border-t border-white/10">
         <ScrollReveal>
-          <div className="bg-neutral-950/90 border border-white/15 rounded-2xl sm:rounded-3xl p-6 sm:p-12 backdrop-blur-2xl shadow-xl">
-            <div className="max-w-xl mb-8 sm:mb-10">
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#007AFF]">Industry Specialization</span>
-              <h2 className="text-2xl sm:text-3xl font-light text-white mt-2 mb-2">Sectors Where We Deploy Systems</h2>
-              <p className="text-white/65 text-xs sm:text-sm font-normal">
-                Har industry ka customer alag tarike se behave karta hai. Click any sector to view specialized funnels and verified case architectures.
-              </p>
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="eyebrow text-[#007AFF]">Real Results</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-2">Indian Businesses Ke Verified Results</h2>
+            <p className="text-white/70 text-sm mt-2">Jab website sirf dikhne ke liye nahi, sales lane ke liye banti hai:</p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid gap-6 lg:grid-cols-3">
+          {cases.map((c) => (
+            <ScrollReveal key={c.t}>
+              <article className="glass h-full flex flex-col justify-between rounded-3xl p-7 hover:border-white/30 transition-all">
+                <div>
+                  <span className="eyebrow text-blue-400">{c.sector}</span>
+                  <h4 className="mt-3 text-lg font-bold text-white leading-snug">{c.t}</h4>
+                  <p className="mt-3 text-sm leading-relaxed text-white/70">{c.b}</p>
+                </div>
+                <div className="mt-6 border-t border-white/10 pt-4">
+                  <div className={`text-3xl font-extrabold ${c.c}`}>{c.kpi}</div>
+                  <div className="mt-1 text-xs uppercase tracking-wider text-white/50">{c.kl}</div>
+                </div>
+              </article>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      {/* 7. INDUSTRY VERTICALS (RESTORED) */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 w-full relative z-10">
+        <ScrollReveal>
+          <div className="glass-strong rounded-3xl p-6 sm:p-10 border border-white/15">
+            <div className="max-w-xl mb-8">
+              <span className="eyebrow text-[#007AFF]">Industry Specialization</span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mt-2">Sectors Where We Deploy Systems</h2>
+              <p className="text-white/70 text-xs sm:text-sm mt-1">Har sector ka customer alag tarike se behave karta hai. Click any sector to view specialized funnels:</p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 text-center">
-              <Link href="/in/b2b-manufacturing" className="block">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-blue-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
-                    <Factory className="w-5 h-5 text-blue-400" />
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3.5">
+              <Link href="/in/b2b-manufacturing" className="block group">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all text-center flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-2.5 text-blue-400 group-hover:scale-110 transition-transform">
+                    <Factory className="w-5 h-5" />
                   </div>
-                  <h4 className="font-medium text-white/90 text-xs sm:text-sm group-hover:text-white transition-colors">B2B Manufacturing</h4>
+                  <h4 className="font-bold text-white text-xs sm:text-sm">B2B & Factories</h4>
                 </div>
               </Link>
 
-              <Link href="/in/healthcare" className="block">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-emerald-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
-                    <Stethoscope className="w-5 h-5 text-emerald-400" />
+              <Link href="/in/healthcare" className="block group">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all text-center flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-2.5 text-emerald-400 group-hover:scale-110 transition-transform">
+                    <Stethoscope className="w-5 h-5" />
                   </div>
-                  <h4 className="font-medium text-white/90 text-xs sm:text-sm group-hover:text-white transition-colors">Clinics & Healthcare</h4>
+                  <h4 className="font-bold text-white text-xs sm:text-sm">Clinics & Doctors</h4>
                 </div>
               </Link>
 
-              <Link href="/in/real-estate" className="block">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-purple-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
-                    <Building2 className="w-5 h-5 text-purple-400" />
+              <Link href="/in/real-estate" className="block group">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all text-center flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-2.5 text-purple-400 group-hover:scale-110 transition-transform">
+                    <Building2 className="w-5 h-5" />
                   </div>
-                  <h4 className="font-medium text-white/90 text-xs sm:text-sm group-hover:text-white transition-colors">Real Estate Systems</h4>
+                  <h4 className="font-bold text-white text-xs sm:text-sm">Real Estate Brokers</h4>
                 </div>
               </Link>
 
-              <Link href="/in/education" className="block">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-amber-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
-                    <GraduationCap className="w-5 h-5 text-amber-400" />
+              <Link href="/in/education" className="block group">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all text-center flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center mb-2.5 text-amber-400 group-hover:scale-110 transition-transform">
+                    <GraduationCap className="w-5 h-5" />
                   </div>
-                  <h4 className="font-medium text-white/90 text-xs sm:text-sm group-hover:text-white transition-colors">Coaching & Academies</h4>
+                  <h4 className="font-bold text-white text-xs sm:text-sm">Coaching & Institutes</h4>
                 </div>
               </Link>
 
-              <Link href="/in/d2c-brands" className="block col-span-2 md:col-span-1">
-                <div className="h-full p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/10 hover:border-rose-500/40 transition-all duration-300 flex flex-col items-center group cursor-pointer hover:-translate-y-1">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-rose-500/10 flex items-center justify-center mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform">
-                    <ShoppingBag className="w-5 h-5 text-rose-400" />
+              <Link href="/in/d2c-brands" className="block group col-span-2 md:col-span-1">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 hover:bg-rose-500/5 transition-all text-center flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-xl bg-rose-500/10 flex items-center justify-center mb-2.5 text-rose-400 group-hover:scale-110 transition-transform">
+                    <ShoppingBag className="w-5 h-5" />
                   </div>
-                  <h4 className="font-medium text-white/90 text-xs sm:text-sm group-hover:text-white transition-colors">D2C & Retail Brands</h4>
+                  <h4 className="font-bold text-white text-xs sm:text-sm">D2C & Retail Brands</h4>
                 </div>
               </Link>
             </div>
@@ -424,74 +396,71 @@ export default function IndiaGrowthPage() {
         </ScrollReveal>
       </section>
 
-      {/* 6. FAQ (FIXED HEADER COLLISION & OPAQUE OBSIDIAN CARDS) */}
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-16 pb-20 pointer-events-auto w-full relative z-10 scroll-mt-32">
+      {/* 8. FAQ (RESTORED) */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-16 w-full relative z-10">
         <ScrollReveal>
-          <div className="text-center mb-8 sm:mb-12">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#007AFF]">Clear Answers</span>
-            <h2 className="text-2xl sm:text-3xl font-light text-white mt-2">Frequently Asked Questions</h2>
-            <p className="text-white/60 text-xs sm:text-sm font-normal mt-1">Koi chupa hua kharcha nahi, zero technical confusion.</p>
+          <div className="text-center mb-8">
+            <span className="eyebrow text-[#007AFF]">Clear Answers</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mt-2">Frequently Asked Questions</h2>
           </div>
 
-          <div className="space-y-3.5 sm:space-y-4">
-            <div className="p-5 sm:p-6 rounded-2xl bg-neutral-950/90 border border-white/20 backdrop-blur-xl shadow-lg">
-              <h3 className="text-sm sm:text-base font-medium text-white mb-2 flex items-center justify-between">
+          <div className="space-y-4">
+            <div className="p-5 sm:p-6 rounded-2xl glass-strong border border-white/10">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-2 flex items-center justify-between">
                 <span>1. Kya hume website aur code ka 100% ownership milta hai?</span>
-                <span className="text-[#007AFF] text-xs">✓</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
               </h3>
-              <p className="text-xs sm:text-sm text-white/75 leading-relaxed font-normal">
-                Haan, 100%. Hum proprietary agency lock-in me vishwas nahi rakhte. Project complete hote hi GitHub repository, domain controls, aur deployment dashboard ka pura access aapko hand over kar diya jata hai.
+              <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
+                Haan, 100%. Hum proprietary agency lock-in me vishwas nahi rakhte. Project complete hote hi GitHub repository aur domain controls ka pura access aapko mil jata hai.
               </p>
             </div>
 
-            <div className="p-5 sm:p-6 rounded-2xl bg-neutral-950/90 border border-white/20 backdrop-blur-xl shadow-lg">
-              <h3 className="text-sm sm:text-base font-medium text-white mb-2 flex items-center justify-between">
-                <span>2. Local freelancers ya typical digital marketing agencies se aap alag kaise hain?</span>
-                <span className="text-[#007AFF] text-xs">✓</span>
+            <div className="p-5 sm:p-6 rounded-2xl glass-strong border border-white/10">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-2 flex items-center justify-between">
+                <span>2. Local freelancers se aap alag kaise hain?</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
               </h3>
-              <p className="text-xs sm:text-sm text-white/75 leading-relaxed font-normal">
-                Freelancers sirf template par content paste karte hain jo mobile par 6-8 second leti hai. Typical agencies sirf vanity metrics (impressions, clicks) dikhati hain. Hum <strong>Revenue Engineers</strong> hain—hum ad targeting, sub-second Next.js code, aur automated WhatsApp qualification ko ek single pipeline me connect karte hain taaki aapko sirf verified paying inquiries milein.
+              <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
+                Freelancers sirf template paste karte hain jo 6-8 second leti hai. Hum ad targeting, Next.js code, aur WhatsApp qualification ko ek single pipeline me connect karte hain taaki aapko sirf verified paying inquiries milein.
               </p>
             </div>
-
-            <div className="p-5 sm:p-6 rounded-2xl bg-neutral-950/90 border border-white/20 backdrop-blur-xl shadow-lg">
-              <h3 className="text-sm sm:text-base font-medium text-white mb-2 flex items-center justify-between">
-                <span>3. System deploy hone me kitna time lagta hai?</span>
-                <span className="text-[#007AFF] text-xs">✓</span>
+            
+            <div className="p-5 sm:p-6 rounded-2xl glass-strong border border-white/10">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-2 flex items-center justify-between">
+                <span>3. Kya hume monthly software fees deni hogi?</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
               </h3>
-              <p className="text-xs sm:text-sm text-white/75 leading-relaxed font-normal">
-                Standard full-funnel systems (Next.js web architecture + WhatsApp automation + CRM dashboard) ko deploy hone me <strong>14 se 21 business days</strong> ka time lagta hai. Isme strict testing aur real device optimization included hoti hai.
-              </p>
-            </div>
-
-            <div className="p-5 sm:p-6 rounded-2xl bg-neutral-950/90 border border-white/20 backdrop-blur-xl shadow-lg">
-              <h3 className="text-sm sm:text-base font-medium text-white mb-2 flex items-center justify-between">
-                <span>4. Kya hume monthly software maintenance fees deni hogi?</span>
-                <span className="text-[#007AFF] text-xs">✓</span>
-              </h3>
-              <p className="text-xs sm:text-sm text-white/75 leading-relaxed font-normal">
-                Nahi. Hum aapka lead dashboard aur web systems modern edge architecture par banate hain jahan hosting costs standard traffic ke liye zero ya negligible hoti hain. Koi expensive monthly per-user SaaS license fees nahi hoti.
+              <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
+                Nahi. Hum cloud serverless edge setup use karte hain. Koi expensive monthly per-user SaaS license fees nahi hoti.
               </p>
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* 7. AUDIT FORM */}
-      <section id="audit-form" className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full relative z-10 pointer-events-auto scroll-mt-28">
+      {/* 9. AUDIT FORM */}
+      <section id="audit-form" className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full relative z-10 scroll-mt-28 border-t border-white/10">
+        <div className="text-center mb-6">
+          <span className="eyebrow text-[#007AFF]">Zero Risk</span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">Get Free 5-Minute Video Audit</h2>
+          <p className="text-white/70 text-xs sm:text-sm mt-1">Apna website link daalein. Hum live speed aur lead bottlenecks check karke video bhejenge.</p>
+        </div>
         <LeadForm variant="in" />
       </section>
 
-      {/* 8. DISCREET LUXURY WHATSAPP FLOAT (Safe Clearance Positioned) */}
-      <div className="fixed bottom-6 right-6 z-50 pointer-events-auto">
+      {/* 10. DISCREET LUXURY WHATSAPP FLOATING BUTTON */}
+      <div className="fixed bottom-6 right-6 z-50">
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-neutral-950/90 border border-white/25 text-white font-medium text-xs sm:text-sm backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.9)] hover:border-emerald-500/50 hover:scale-105 active:scale-95 transition-all group"
+          className="relative group flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-neutral-900/95 border border-[#25D366]/40 text-white font-bold text-xs sm:text-sm backdrop-blur-2xl ring-glow-emerald hover:scale-105 active:scale-95 transition-all shadow-[0_10px_40px_rgba(37,211,102,0.3)]"
         >
-          <div className="w-2 h-2 rounded-full bg-[#25D366] group-hover:scale-125 transition-transform"></div>
-          <span>WhatsApp Consultation</span>
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#25D366]"></span>
+          </span>
+          <span>WhatsApp Us (+91 9835182801)</span>
         </a>
       </div>
 
